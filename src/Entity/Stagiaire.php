@@ -113,6 +113,20 @@ class Stagiaire
         return $this;
     }
 
+    public function getAge(): ?string
+    {
+        $now = new \DateTime();
+        if ($this->dateDeNaissance == null)
+        {
+            return null;
+        }
+        else
+        {
+            $interval = $this->dateDeNaissance->diff($now);
+            return $interval->format("%y");            
+        }
+    }
+    
     public function __toString()
     {
         return $this->nom." ".$this->prenom;
