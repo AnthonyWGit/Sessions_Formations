@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+
+<h1>Détail de {{ stagiaire }} </h1>
+<li>Email : {{ stagiaire.email }} </li>
+<li>Age : {{ stagiaire.dateDeNaissance | }}</li>
+
+{% endblock %}
