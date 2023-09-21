@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
-    #[Route('/stagiaires', name: 'app_stagiaire')]
+    #[Route('/stagiaires', name: 'globalStagiaire')]
     public function index(StagiaireRepository $stagiaireRepository): Response
     {
         $stagiaires = $stagiaireRepository->findBy([], ["nom" => "ASC"]);
