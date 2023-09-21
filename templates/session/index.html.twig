@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+    <h1>Liste des sessions</h1>
+    <ul>
+        {% for session in sessions %}
+            <li> <a href=" {{ path("detailSession" , {'id' : session.id}) }}">{{ session.titre }}</a></li>
+            <p>Places restantes : {{session.places}} </p>
+        {% endfor %}
+
+    </ul>
+{% endblock %}

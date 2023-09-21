@@ -6,6 +6,11 @@
 
 <h1>Détail de {{ stagiaire }} </h1>
 <li>Email : {{ stagiaire.email }} </li>
-<li>Age : {{ stagiaire.dateDeNaissance | }}</li>
+<li>Age : {{ stagiaire.age }}</li>
+<li>Inscrit aux sessions : 
+    {% for session in stagiaire.sessions %}
+        {{ session.titre }}
+    {% endfor %}
+</li>
 
 {% endblock %}

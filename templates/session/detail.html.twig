@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+    <h1>Caractérisque de la seesion : {{ session.titre }} </h1>
+    <p>Nom du référant formateur : {{ session.formateur.nom }} {{ session.formateur.prenom }} </p>
+    <p>Contenu de la formation : {{ session.formation.intitule }} </p>
+    <p>Modules concernées : 
+        {% for prog in session.programmes %} 
+            {{ prog.moduleSession.nom }}
+        {% endfor %}
+
+    </p>
+{% endblock %}
