@@ -7,9 +7,13 @@
     <p>Nom du référant formateur : {{ session.formateur.nom }} {{ session.formateur.prenom }} </p>
     <p>Contenu de la formation : {{ session.formation.intitule }} </p>
     <p>Modules concernées : 
-        {% for prog in session.programmes %} 
-            {{ prog.moduleSession.nom }}
-        {% endfor %}
+        {% if session.programmes is empty %}
+            aucun module n'a été trouvé.
+        {% else %}
+            {% for prog in session.programmes %} 
+                {{ prog.moduleSession.nom }}
+            {% endfor %}
+        {% endif %}
     </p>
     <p>La session démarre le : {{ session.dateSessionDebutFormat }} </p>
     <p>La session se termine le : {{ session.dateSessionFinFormat }}</p>
@@ -18,9 +22,9 @@
     {% if currentDate > session.dateSessionFinFormat %} {# below cases to display when a session is open or closed #}
         <p>Cette session est terminée</p>
     {% elseif currentDate < session.dateSessionFinFormat  %}
-        <p>Cette session est ouverte</p>
+        <p>Cette session est ouverte.</p>
     {% else %}
-        <p>Cette session est terminée</p>
+        <p>Cette session est terminée.</p>
     {% endif %}
 
     {% if session.dateSessionFinFormat > currentDate %}
@@ -31,11 +35,15 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Voici les stagiaires qui étaient inscrits à la session</p>
+        {% if session.stagiaires is empty %}
+            <p>Aucun stagiaire n'a été trouvé.</p>
+        {% else %}
+        <p>Voici les stagiaires qui étaient inscrits à la session : </p>
         <ul>
             {% for stagiaire in session.stagiaires %}
                 <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
             {% endfor %}
         </ul>
+        {% endif %}
     {% endif %}
 {% endblock %}
