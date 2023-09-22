@@ -28,7 +28,7 @@ class StagiaireController extends AbstractController
         $stagiaire = new Stagiaire();
         $form = $this->createForm(StagiaireType::class , $stagiaire );
 
-        return $this->render("entreprise/stagiaire/new.html.twig", ['formNewStagiaire' => $stagiaire]);
+        return $this->render("stagiaire/new.html.twig", ['formNewStagiaire' => $form]);
     }
 
 
