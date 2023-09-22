@@ -34,6 +34,13 @@ class StagiaireController extends AbstractController
                 $stagiaire = $form->getData();
                 $entityManager->persist($stagiaire); //traditional prepare / execute in SQL
                 $entityManager->flush();
+
+                $this->addFlash // need to be logged as user to see the flash messages build-in Symfony
+                (
+                    'notice',
+                    'Your changes were saved!'
+                );
+
                 return $this->redirectToRoute('globalStagiaire'); //redirect to list stagiaires if everything is ok
             }
         
