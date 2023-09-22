@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Stagiaire;
+use App\Form\StagiaireType;
 use App\Repository\StagiaireRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +21,17 @@ class StagiaireController extends AbstractController
         ]);
     }
 
+    #[Route('/stagiaire/new', name: 'newStagiaire')]
+    public function new(Request $request): Response
+    {
+        // creates a task object and initializes some data for this example
+        $stagiaire = new Stagiaire();
+        $form = $this->createForm(StagiaireType::class , $stagiaire );
+
+        return $this->render("entreprise/stagiaire/new.html.twig", ['formNewStagiaire' => $stagiaire]);
+    }
+
+
     #[Route('/stagiaire/{id}', name: 'detailStagiaire')]
     public function details(Stagiaire $stagiaire): Response
     {
@@ -28,3 +41,6 @@ class StagiaireController extends AbstractController
     }
 
 }
+
+
+
