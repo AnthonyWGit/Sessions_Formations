@@ -6,7 +6,7 @@
 <h1>Voici la liste des référents de session</h1>
 {% for formateur in formateurs %}
 
-    <li>{{ formateur }}</li>
+    <li><a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a></li>
 
 {% endfor %}
 {% endblock %}
