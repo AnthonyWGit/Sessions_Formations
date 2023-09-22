@@ -7,4 +7,8 @@
         {% for session in formateur.sessions %}
             <li>{{ session }}</li>
         {% endfor %}
+
+    <p>
+        Contactez le formateur : <a href="mailto:{{formateur.email}}">{{ formateur.email }}</a>
+    </p>
 {% endblock %}
