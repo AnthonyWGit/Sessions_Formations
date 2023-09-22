@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ModuleSessionRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModuleSessionController extends AbstractController
 {
-    #[Route('/module/session', name: 'app_module_session')]
-    public function index(): Response
+    #[Route('/modulesession', name: 'globalModuleSession')]
+    public function index(ModuleSessionRepository $moduleSessionRepository): Response
     {
+        $modulesSession = $moduleSessionRepository->findBy([], ["nom" => "ASC"]);
         return $this->render('module_session/index.html.twig', [
-            'controller_name' => 'ModuleSessionController',
+            'modulesSession' => $modulesSession,
         ]);
     }
 }
