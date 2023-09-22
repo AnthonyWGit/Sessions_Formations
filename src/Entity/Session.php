@@ -68,6 +68,11 @@ class Session
         return $this->dateSessionDebut;
     }
 
+    public function getDateSessionDebutFormat(): ?string
+    {
+        return $this->dateSessionDebut->format("Y-m-d");
+    }
+
     public function setDateSessionDebut(\DateTimeInterface $dateSessionDebut): static
     {
         $this->dateSessionDebut = $dateSessionDebut;
@@ -79,6 +84,12 @@ class Session
     {
         return $this->dateSessionFin;
     }
+
+    public function getDateSessionFinFormat(): ?string
+    {
+        return $this->dateSessionFin->format("Y-m-d");
+    }
+
 
     public function setDateSessionFin(\DateTimeInterface $dateSessionFin): static
     {
