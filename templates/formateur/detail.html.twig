@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormateurDetail{% endblock %}
+
+{% block body %}
+    <h1>{{ formateur }} est référent-e des sessions </h1>
+        {% for session in formateur.sessions %}
+            <li>{{ session }}</li>
+        {% endfor %}
+{% endblock %}
