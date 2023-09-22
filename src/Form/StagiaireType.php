@@ -20,7 +20,9 @@ class StagiaireType extends AbstractType
         $builder
             ->add('nom' , TextType::class)
             ->add('prenom', TextType::class)
-            ->add('dateDeNaissance', DateType::class)
+            ->add('dateDeNaissance', DateType::class , [
+                'widget' =>'single_text',
+            ])
             ->add('email', TextType::class)
             ->add('sessions', EntityType::class, [ //Must find a way to display only sessions that have not ended yet
                 "class" => Session::class,
