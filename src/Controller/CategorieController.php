@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,14 @@ class CategorieController extends AbstractController
         $categories = $categorieRepository->findBy([], ["nomCategorie" => "ASC"]);
         return $this->render('categorie/index.html.twig', [
             'categories' => $categories,
+        ]);
+    }
+
+    #[Route('/categorie/{id}', name: 'detailCategorie')]
+    public function categorieDetail(Categorie $categorie): Response
+    {
+        return $this->render('categorie/detail.html.twig', [
+            'categorie' => $categorie,
         ]);
     }
 }
