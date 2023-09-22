@@ -7,7 +7,8 @@
     <ul>
         {% for session in sessions %}
             <li> <a href=" {{ path("detailSession" , {'id' : session.id}) }}">{{ session.titre }}</a></li>
-            <p>Places restantes : {{session.places}} </p>
+            <p>Places Max : {{session.places}} </p>
+            <p>Place(s) restantes  {{ session.places - session.stagiaires | length }}</p>
         {% endfor %}
 
     </ul>
