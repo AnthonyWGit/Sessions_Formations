@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CatDetail{% endblock %}
+
+{% block body %}
+    <h1>Modules concernés par la catégories {{ categorie }}</h1>
+        {% for module in categorie.modulesSession %}
+            <li>{{ module.nom }}</li>
+        {% endfor %}
+{% endblock %}
