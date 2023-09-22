@@ -10,6 +10,16 @@
         {% for prog in session.programmes %} 
             {{ prog.moduleSession.nom }}
         {% endfor %}
-
     </p>
+    <p>La session démarre le : {{ session.dateSessionDebutFormat }} </p>
+    <p>La session se termine le : {{ session.dateSessionFinFormat }}</p>
+
+    {% set  currentDate = "now"|date("Y-m-d") %}
+    {% if currentDate > session.dateSessionFinFormat %} {# below cases to display when a session is open or closed #}
+        <p>Cette session est terminée</p>
+    {% elseif currentDate < session.dateSessionFinFormat  %}
+        <p>Cette session est ouverte</p>
+    {% else %}
+        <p>Cette session est terminée</p>
+    {% endif %}
 {% endblock %}
