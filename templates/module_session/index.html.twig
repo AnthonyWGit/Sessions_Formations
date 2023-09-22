@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModuleSessionController!{% endblock %}
+
+{% block body %}
+    <h1>Liste des modules disponibles</h1>
+        {% for module in modulesSession %}
+            <p>
+            {{ module }} dans {{ module.categorie }}. 
+            {% if module.programmes is empty %}
+                Pas de durée disponible.
+            {% else %}
+            Durée du module : 
+                {% for programme in module.programmes %}
+                        {{ programme.nbJours }} jours. 
+                {% endfor %}
+            </p>
+            {% endif %}
+        {% endfor %}
+{% endblock %}
