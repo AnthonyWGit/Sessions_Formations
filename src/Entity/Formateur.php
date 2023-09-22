@@ -27,6 +27,9 @@ class Formateur
     #[ORM\OneToMany(mappedBy: 'formateur', targetEntity: Session::class)]
     private Collection $sessions;
 
+    #[ORM\Column(length: 50)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -106,5 +109,17 @@ class Formateur
     public function __toString()
     {
         return $this->nom." ".$this->prenom;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
     }
 }
