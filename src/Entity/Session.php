@@ -92,6 +92,18 @@ class Session
         return $this->places;
     }
 
+    // public function getPlacesRestantes($nbInscrits): ?int
+    // {
+    //     return $this->places - $nbInscrits;
+    // }
+
+    // public function setPlacesRestantes(int $places, int $nbInscrits): static
+    // {
+    //     $this->places = $places - $nbInscrits;
+
+    //     return $this;
+    // }
+
     public function setPlaces(int $places): static
     {
         $this->places = $places;
