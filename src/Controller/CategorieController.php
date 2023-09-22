@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +22,31 @@ class CategorieController extends AbstractController
         ]);
     }
 
+    #[Route('/categorie/new', name: 'newCategorie')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // creates a task object and initializes some data for this example
+        $categorie = new Categorie();
+        $form = $this->createForm(CategorieType::class, $categorie );
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) 
+            {
+                $categorie = $form->getData();
+                $entityManager->persist($categorie); //traditional prepare / execute in SQL
+                $entityManager->flush();
+
+                $this->addFlash // need to be logged as user to see the flash messages build-in Symfony
+                (
+                    'notice',
+                    'Your changes were saved!'
+                );
+
+                return $this->redirectToRoute('globalCategorie'); //redirect to list stagiaires if everything is ok
+            }
+        
+        return $this->render("categorie/new.html.twig", ['formNewCategorie' => $form]);
+    }
+    
     #[Route('/categorie/{id}', name: 'detailCategorie')]
     public function categorieDetail(Categorie $categorie): Response
     {
@@ -26,4 +54,6 @@ class CategorieController extends AbstractController
             'categorie' => $categorie,
         ]);
     }
+
+
 }
