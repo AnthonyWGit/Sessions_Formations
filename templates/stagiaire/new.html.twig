@@ -4,5 +4,14 @@
 
 {% block body %}
     <h1>Ajouter un stagiaire</h1>
-    {{ form(formNewStagiaire) }}
+    {{ form_start(formNewStagiaire) }}
+        {{ form_row(formNewStagiaire.nom) }}
+        {{ form_row(formNewStagiaire.prenom) }}
+        {{ form_row(formNewStagiaire.dateDeNaissance) }}
+        {{ form_row(formNewStagiaire.email) }}
+        {{ form_row(formNewStagiaire.sessions) }}
+        {{ form_row(formNewStagiaire.valider) }}
+    {{ form_end(formNewStagiaire) }}
+
+    
 {% endblock %}
