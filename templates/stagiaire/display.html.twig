@@ -9,8 +9,9 @@
 <li>Age : {{ stagiaire.age }}</li>
 <li>Inscrit aux sessions : 
     {% for session in stagiaire.sessions %}
-        {{ session.titre }}
+        <a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a>
     {% endfor %}
 </li>
 
+<p><a href="{{ path('newStagiaire') }}">Ajouter un stagiaire</a></p>
 {% endblock %}
