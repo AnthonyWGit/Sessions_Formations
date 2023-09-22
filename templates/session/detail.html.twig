@@ -22,4 +22,20 @@
     {% else %}
         <p>Cette session est terminée</p>
     {% endif %}
+
+    {% if session.dateSessionFinFormat > currentDate %}
+        <p>Voici les stagiaires qui se sont inscrits à la session</p>
+        <ul>
+            {% for stagiaire in session.stagiaires %}
+                <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Voici les stagiaires qui étaient inscrits à la session</p>
+        <ul>
+            {% for stagiaire in session.stagiaires %}
+                <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
