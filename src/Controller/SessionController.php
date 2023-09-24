@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Stagiaire;
 use App\Entity\Session;
+use App\Entity\Stagiaire;
+use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,6 +37,33 @@ class SessionController extends AbstractController
             // 'arrayCount' => $arrayCount,
         ]);
     }
+
+
+    #[Route('/session/new', name: 'newSession')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // creates a task object and initializes some data for this example
+        $session = new Session();
+        $form = $this->createForm(SessionType::class , $session);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) 
+            {
+                $session = $form->getData();
+                $entityManager->persist($session); //traditional prepare / execute in SQL
+                $entityManager->flush();
+
+                $this->addFlash // need to be logged as user to see the flash messages build-in Symfony
+                (
+                    'notice',
+                    'Your changes were saved!'
+                );
+
+                return $this->redirectToRoute('globalSession'); //redirect to list stagiaires if everything is ok
+            }
+        
+        return $this->render("session/new.html.twig", ['formNewSession' => $form]);
+    }
+
 
     #[Route('/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session): Response
