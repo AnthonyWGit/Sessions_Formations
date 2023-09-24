@@ -5,15 +5,25 @@
 {% block body %}
 
     <h1>Bonjour Visiteur</h1>
+    <div class="regle">
+        <h2 class="titrePage">Stagiaires liste</h2>         
+        <p class="looksLikeAButton"><a href="{{ path('newStagiaire') }}">Ajouter un stagiaire</a></p>
+    </div>
 
-    <p>Stagiaires liste</p>
+    <div class="cardBoard">
         {% for stagiaire in stagiaires %}
-            <li> 
-                {{ stagiaire.nom }} </br>
-                Voir les détails du stagiaire : <a href=" {{path("detailStagiaire", {'id' : stagiaire.id}) }}"> Ici</a>
-            </li>
-        {% endfor %}
+            <div class="card">
 
-        <p><a href="{{ path('newStagiaire') }}">Ajouter un stagiaire</a></p>
+                    <p class="titreCard"> {{ stagiaire.nom }} </p>
+                    <div class="imgCard">
+                        <img src=" {{asset('img/iconT.png')}}" alt="profile">
+                    </div>
+                    <p class="detail">Voir les détails du stagiaire : <a href=" {{path("detailStagiaire", {'id' : stagiaire.id}) }}"> Ici</a></p>
+
+            </div>
+            {% endfor %}
+    </div>
+
+
         
 {% endblock %}

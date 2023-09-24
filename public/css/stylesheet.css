@@ -31,3 +31,85 @@ nav ul
 {
     text-align: center;
 }
+
+.card
+{
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    height: 10rem;
+    border: dotted 1px red;
+    padding: 0.5rem;
+    background-color: rgba(127, 255, 212, 0.30);
+    border-radius: 5%;
+    justify-content: space-between;
+}
+
+.card:hover
+{
+    background-color: rgba(127, 204, 255, 0.5);
+    transition: 1s;
+}
+
+.card img
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+}
+
+.imgCard
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardBoard
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-grow: 1;
+    gap: 0.5rem;
+    justify-content: space-evenly;
+}
+
+.regle
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem 0 3rem;
+}
+
+.looksLikeAButton
+{
+    background-color: rgba(209, 255, 41, 0.603);
+    border: solid 1.5px black;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.looksLikeAButton a
+{
+    text-decoration: none;
+    color: black;
+}
+.titrePage
+{
+    padding-left: 42.5%;
+}
+.titreCard
+{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
