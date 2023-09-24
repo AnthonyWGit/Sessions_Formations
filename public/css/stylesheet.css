@@ -148,3 +148,10 @@ nav ul
     justify-content: center;
     padding: 1rem;
 }
+
+.board
+{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
