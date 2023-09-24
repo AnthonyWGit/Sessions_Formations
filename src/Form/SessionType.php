@@ -24,10 +24,6 @@ class SessionType extends AbstractType
             ->add('dateSessionDebut', DateType::class)
             ->add('dateSessionFin', DateType::class)
             ->add('places', NumberType::class)
-            ->add('stagiaires', EntityType::class, [
-                'class' => Stagiaire::class,
-                'multiple' => true,
-            ])
             ->add('formation', EntityType::class, [
                 'class' => Formation::class
             ])

@@ -6,8 +6,10 @@
     <h1>Liste des catégories</h1>
 
     {% for categorie in categories %}
-        <p> <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> {{categorie}} </a></p>
-       <p><a href=" {{ path('editCategorie', {'id' : categorie.id }) }} ">Edit</a></p> 
+        <p> 
+            <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> {{categorie}} </a> 
+            <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} ">Edit</a>
+        </p>
     {% endfor %}
 {% endblock %}
 
