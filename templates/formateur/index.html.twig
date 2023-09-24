@@ -4,9 +4,11 @@
 
 {% block body %}
 <h1>Voici la liste des référents de session</h1>
-{% for formateur in formateurs %}
+    {% for formateur in formateurs %}
 
-    <li><a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a></li>
+        <li><a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a></li>
 
-{% endfor %}
+    {% endfor %}
+
+    <p><a href=" {{ path("newFormateur") }}">Ajouter </a> un formateur</p>
 {% endblock %}
