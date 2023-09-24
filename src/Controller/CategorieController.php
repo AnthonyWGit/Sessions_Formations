@@ -23,10 +23,16 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/categorie/new', name: 'newCategorie')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    #[Route('/categorie/{id}/edit', name: 'editCategorie')]
+    public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
+    {//Initialized at null so when categort doesn't exist it'll create a new one
         // creates a task object and initializes some data for this example
-        $categorie = new Categorie();
+
+        if (!$categorie)
+        {
+            $categorie = new Categorie;
+        }
+
         $form = $this->createForm(CategorieType::class, $categorie );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
