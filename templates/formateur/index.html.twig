@@ -4,11 +4,30 @@
 
 {% block body %}
 <h1>Voici la liste des référents de session</h1>
+
+    <div class="topPage">
+        <div class="looksLikeAButton">
+            <a href=" {{ path("newFormateur") }}">Ajouter  un formateur</a>
+        </div>
+    </div>
+
+<div class="cardBoard">
     {% for formateur in formateurs %}
-
-        <li><a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a> <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a></li>
-
+        <div class="card">
+            <div class="titreCard">
+                <p>
+                    <a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a>                    
+                </p>
+            </div>
+            <div class="imgCard">
+                <img src=" {{asset('img/iconT.png')}}" alt="profile">
+            </div>
+            <div class="looksLikeAButtonGrey">
+                <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a>
+            </div>
+        </div>
     {% endfor %}
+</div>
 
-    <p><a href=" {{ path("newFormateur") }}">Ajouter </a> un formateur</p>
+
 {% endblock %}

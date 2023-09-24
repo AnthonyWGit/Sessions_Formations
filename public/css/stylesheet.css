@@ -2,7 +2,11 @@ html
 {
     background-color: rgba(127, 255, 212, 0.10);
 }
-
+a
+{
+    text-decoration: none;
+    color: default;
+}
 nav
 {
     display: flex;
@@ -44,6 +48,7 @@ nav ul
     background-color: rgba(127, 255, 212, 0.30);
     border-radius: 5%;
     justify-content: space-between;
+    align-items: center;
 }
 
 .card:hover
@@ -98,10 +103,24 @@ nav ul
     padding: 3px;
 }
 
+.looksLikeAButtonGrey
+{
+    background-color: rgb(156, 156, 156);
+    border: solid 1.5px rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px;
+}
+.looksLikeAButtonGrey a
+{
+    text-decoration: none;
+    color: rgb(255, 255, 255) !important;
+}
+
 .looksLikeAButton a
 {
     text-decoration: none;
-    color: black;
+    color: black !important;
 }
 .titrePage
 {
@@ -113,4 +132,19 @@ nav ul
     justify-content: center;
     padding: 0;
     margin: 0;
+    font-size: 18px;
+}
+
+.titreCard p
+{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.topPage
+{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 }
