@@ -1,0 +1,25 @@
+html
+{
+    background-color: rgba(127, 255, 212, 0.10);
+}
+a
+{
+    text-decoration: none;
+    color: default;
+}
+.encard
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: inset 2px;
+    background-color: khaki;
+    padding: 0 0 3rem 0;
+    border-radius: 10px;
+    gap: 0.8rem;
+}
+.encard p
+{
+    margin: 0;
+    padding: 0 0 0 2rem;
+}
