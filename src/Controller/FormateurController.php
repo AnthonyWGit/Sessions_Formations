@@ -23,10 +23,13 @@ class FormateurController extends AbstractController
     }
 
     #[Route('/formateur/new', name: 'newFormateur')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/formateur/{id}/edit', name: 'editFormateur')]
+    public function new(Formateur $formateur = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
-        $formateur = new Formateur();
+        if ($formateur === null) {
+            $formateur = new Formateur();
+        }
         $form = $this->createForm(FormateurType::class, $formateur );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
