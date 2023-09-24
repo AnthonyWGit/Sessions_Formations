@@ -1,16 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'detail.html.twig' %}
 
 {% block title %}Hello StagiaireController!{% endblock %}
 
 {% block body %}
-
-<h1>Détail de {{ stagiaire }} </h1>
-<li>Email : {{ stagiaire.email }} </li>
-<li>Age : {{ stagiaire.age }}</li>
-<li>Inscrit aux sessions : 
-    {% for session in stagiaire.sessions %}
-        <a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a>
-    {% endfor %}
-</li>
-
+<div class="encard">
+    <h1>Détail de {{ stagiaire }} </h1>
+    <p>Email : {{ stagiaire.email }} </p>
+    <p>Age : {{ stagiaire.age }}</p>
+    <p>Inscrit aux sessions : 
+        {% for session in stagiaire.sessions %}
+            <a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a>
+        {% endfor %}
+    </p>
+</div>
 {% endblock %}
