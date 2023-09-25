@@ -4,17 +4,31 @@
 
 {% block body %}
     <h1>Liste des modules disponibles</h1>
+        <a href="{{path("newModuleSession")}}">
+            <div class="topPage">
+            <div class="looksLikeAButton">
+                Nouveau module
+            </div>
+            </div>
+        </a>
+        <ul>
         {% for module in modulesSession %}
-            <p>
-            {{ module }} dans {{ module.categorie }}. 
+            <li>
+                {{ module }} dans {{ module.categorie }}.
+            </li>
             {% if module.programmes is empty %}
-                Pas de durée disponible.
+                <p>
+                    Pas de durée disponible. Aucune session ne propose ce module.
+                </p>
+                <a href=" {{ path("newProgramme") }}" class="looksLikeAButton">Programmer le module.</a> 
             {% else %}
-            Durée du module : 
                 {% for programme in module.programmes %}
-                        {{ programme.nbJours }} jours. 
+                <p>
+                    Durée du module : {{ programme.nbJours }} jours. Module en cours dans {{ programme.session}}.
+                    <a href=" {{path("editProgramme" , {'id' : programme.id}) }}">Reprogrammer le module.</a>
+                </p>
                 {% endfor %}
-            </p>
             {% endif %}
         {% endfor %}
+        </ul>
 {% endblock %}
