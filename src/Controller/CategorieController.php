@@ -52,7 +52,15 @@ class CategorieController extends AbstractController
         
         return $this->render("categorie/new.html.twig", ['formNewCategorie' => $form]);
     }
-    
+   
+    #[Route('/categorie/{id}/delete', name: 'deleteCategorie')]
+    public function categorieDelete(Categorie $categorie, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($categorie);
+        $entityManager->flush();
+        $this->redirectToRoute('globalCategorie');
+    }
+
     #[Route('/categorie/{id}', name: 'detailCategorie')]
     public function categorieDetail(Categorie $categorie): Response
     {

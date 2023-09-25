@@ -9,6 +9,7 @@
         <p> 
             <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> {{categorie}} </a> 
             <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} ">Edit</a>
+            <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} ">Delete</a>
         </p>
     {% endfor %}
 {% endblock %}

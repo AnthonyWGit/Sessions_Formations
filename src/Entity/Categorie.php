@@ -18,7 +18,7 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $nomCategorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: ModuleSession::class)]
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: ModuleSession::class, orphanRemoval:true)]
     private Collection $modules_session;
 
     public function __construct()
