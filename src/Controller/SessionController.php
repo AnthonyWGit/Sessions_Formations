@@ -88,13 +88,7 @@ class SessionController extends AbstractController
         return $this->render("session/new.html.twig", ['formNewSession' => $form]);
     }
 
-    #[Route('/session/{id}/delete', name: 'deleteSession')]
-    public function sessionDelete(Session $session, EntityManagerInterface $entityManager): Response
-    {
-        $entityManager->remove($session);
-        $entityManager->flush();
-        return $this->redirectToRoute('globalSession');
-    }
+
 
     #[Route('/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
@@ -107,4 +101,26 @@ class SessionController extends AbstractController
             'modulesnonconcernes' => $modulesnonconcernes
         ]);
     }
+
+    #[Route('/session/{id}/remove/{session2}/', name: 'removeStagiaire', priority: 2)] //Higher prio 
+    public function removeStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $session->getId();
+        var_dump($idToRedirect);
+        $session->removeStagiaire($stagiaire);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailSession', $idToRedirect);
+    }
+    #[Route('/session/{id}/add/{session}', name: 'addStagiaire', priority: 3)]
+    public function addStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $session->getId();
+        $session->addStagiaire($stagiaire);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailSession', $idToRedirect);
+    }
+
+
 }
