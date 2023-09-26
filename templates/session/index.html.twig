@@ -15,6 +15,7 @@
                 {% else %}
                     <p>La session est fermée</p>
                 {% endif %}
+                <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}">Supprimer la session</a></p>
             </ul>
         {% endfor %}
     </div>

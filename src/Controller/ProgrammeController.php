@@ -47,4 +47,12 @@ class ProgrammeController extends AbstractController
         
         return $this->render("programme/new.html.twig", ['formNewProgramme' => $form]);
     }
+
+    #[Route('/programme/{id}/delete', name: 'deleteProgramme')]
+    public function formateurDelete(Programme $programme, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($programme);
+        $entityManager->flush();
+        return $this->redirectToRoute('globalModuleSession');
+    }
 }

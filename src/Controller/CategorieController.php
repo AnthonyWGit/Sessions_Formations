@@ -58,7 +58,7 @@ class CategorieController extends AbstractController
     {
         $entityManager->remove($categorie);
         $entityManager->flush();
-        $this->redirectToRoute('globalCategorie');
+        return $this->redirectToRoute('globalCategorie');
     }
 
     #[Route('/categorie/{id}', name: 'detailCategorie')]

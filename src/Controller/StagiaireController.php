@@ -47,6 +47,13 @@ class StagiaireController extends AbstractController
         return $this->render("stagiaire/new.html.twig", ['formNewStagiaire' => $form]);
     }
 
+    #[Route('/stagiaire/{id}/delete', name: 'deleteStagiaire')]
+    public function formateurDelete(Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($stagiaire);
+        $entityManager->flush();
+        $this->redirectToRoute('globalStagiaire');
+    }
 
     #[Route('/stagiaire/{id}', name: 'detailStagiaire')]
     public function details(Stagiaire $stagiaire): Response

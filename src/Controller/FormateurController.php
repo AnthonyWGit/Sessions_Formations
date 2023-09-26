@@ -50,6 +50,14 @@ class FormateurController extends AbstractController
         return $this->render("formateur/new.html.twig", ['formNewFormateur' => $form]);
     }
 
+    #[Route('/formateur/{id}/delete', name: 'deleteFormateur')]
+    public function formateurDelete(Formateur $formateur, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($formateur);
+        $entityManager->flush();
+        return $this->redirectToRoute('globalCategorie');
+    }
+
     #[Route('/formateur/{id}', name: 'detailFormateur')]
     public function formateurDetail(Formateur $formateur): Response
     {

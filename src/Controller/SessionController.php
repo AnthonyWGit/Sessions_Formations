@@ -64,6 +64,13 @@ class SessionController extends AbstractController
         return $this->render("session/new.html.twig", ['formNewSession' => $form]);
     }
 
+    #[Route('/session/{id}/delete', name: 'deleteSession')]
+    public function sessionDelete(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('globalSession');
+    }
 
     #[Route('/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session): Response

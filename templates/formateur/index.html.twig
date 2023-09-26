@@ -23,6 +23,9 @@
             <div class="looksLikeAButtonGrey">
                 <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a>
             </div>
+            <div class="looksLikeAButtonGrey">
+                <a href="{{ path("deleteFormateur" , {'id' : formateur.id}) }}">Supprimer</a>
+            </div>
         </div>
     {% endfor %}
 </div>
