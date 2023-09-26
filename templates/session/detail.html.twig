@@ -27,6 +27,14 @@
         <p>Cette session est terminée.</p>
     {% endif %}
 
+    <p>Modules inclus dans cette session de formation</p>
+
+    <ul>
+        {% for programme in session.programmes %}
+            <li> {{ programme.moduleSession }} {{programme.nbjours}} jours.</li>
+        {% endfor %}
+    </ul>
+
     {% if session.dateSessionFinFormat > currentDate %}
         <p>Voici les stagiaires qui se sont inscrits à la session</p>
         <ul>
@@ -46,4 +54,21 @@
         </ul>
         {% endif %}
     {% endif %}
+    <p><a class="looksLikeAButton" href=" {{ path("editSession", {"id" : session.id }) }}">Modifier les détails de la session</a></p>
+    <p>Ajouter un stagiaire à la session ? </p> 
+    <ul>
+        {% for stagiaire in stagiairesNonInscrits %}
+            <li>
+                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <button> + </button>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Ajouter un module dans la session ? </p>
+    <ul>
+        {% for programme in modulesnonconcernes %}
+            <li>
+                {{ programme.moduleSession.nom }} ({{programme.nbjours}} jours)
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
