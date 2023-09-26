@@ -40,6 +40,7 @@
         <ul>
             {% for stagiaire in session.stagiaires %}
                 <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
+                <a href=" {{path ('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">- </a>
             {% endfor %}
         </ul>
     {% else %}
@@ -49,7 +50,10 @@
         <p>Voici les stagiaires qui étaient inscrits à la session : </p>
         <ul>
             {% for stagiaire in session.stagiaires %}
-                <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
+                <li>
+                    <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a>
+                    <a href=" {{ path('removeStagiaire', {'id' : stagiaire.id , 'session2' : session.id }) }}">-</a>
+                </li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -59,7 +63,7 @@
     <ul>
         {% for stagiaire in stagiairesNonInscrits %}
             <li>
-                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <button> + </button>
+                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <a href=" {{path ('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">+</a>
             </li>
         {% endfor %}
     </ul>
