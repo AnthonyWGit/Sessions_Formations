@@ -9,9 +9,8 @@
             <ul>
                 <li> <a href=" {{ path("detailSession" , {'id' : session.id}) }}">{{ session.titre }}</a></li>
                 <p>Places Max : {{session.places}} </p>
-                {% set  currentDate = "now"|date("Y-m-d") %}
                 {% if currentDate < session.dateSessionFinFormat %}
-                    <p>Place(s) restantes  {{ session.places - session.stagiaires | length }}</p>
+                    <p>Place(s) restantes : {{ session.placesRestantes }}</p>
                 {% else %}
                     <p>La session est fermée</p>
                 {% endif %}
