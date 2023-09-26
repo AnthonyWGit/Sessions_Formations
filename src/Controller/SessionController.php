@@ -50,12 +50,24 @@ class SessionController extends AbstractController
 
     }
 
+    #[Route('/session/{id}/delete', name: 'deleteSession')]
+    public function sessionDelete(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('globalSession');
+    }
+
 
     #[Route('/session/new', name: 'newSession')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/session/{id}/edit', name: 'editSession')]
+    public function new(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
-        $session = new Session();
+        if ($session === null)
+        {
+            $session = new Session();            
+        }
         $form = $this->createForm(SessionType::class , $session);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
@@ -85,10 +97,14 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'detailSession')]
-    public function sessionDetail(Session $session): Response
+    public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
     {
+        $stagiairesNonInscrits = $sessionRepo->findNonInscrits($session->getId());
+        $modulesnonconcernes = $sessionRepo->findModulesNonConcernes($session->getId());
         return $this->render('session/detail.html.twig', [
             'session' => $session,
+            'stagiairesNonInscrits' => $stagiairesNonInscrits,
+            'modulesnonconcernes' => $modulesnonconcernes
         ]);
     }
 }
