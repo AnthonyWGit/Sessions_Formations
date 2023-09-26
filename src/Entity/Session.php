@@ -103,10 +103,15 @@ class Session
         return $this->places;
     }
 
-    // public function getPlacesRestantes($nbInscrits): ?int
-    // {
-    //     return $this->places - $nbInscrits;
-    // }
+    public function getInscrits(): ?int
+    {
+        return count($this->stagiaires);
+    }
+
+    public function getPlacesRestantes() : ?int
+    {
+        return $this->places - $this->getInscrits();
+    }
 
     // public function setPlacesRestantes(int $places, int $nbInscrits): static
     // {
