@@ -104,15 +104,17 @@ class SessionRepository extends ServiceEntityRepository
 
         $sub = $em->createQueryBuilder();
         $sub
-        ->select('st')
-        ->from('App\Entity\Programme', 'st')
-        ->where($sub->expr()->notIn('st.id', $queryBuilder->getDQL()))
+        ->select('m')
+        ->from('App\Entity\Programme', 'm')
+        ->where($sub->expr()->notIn('m.id', $queryBuilder->getDQL()))
         ->setParameter('id' , $session_id)
-        ->orderBy('st.nbjours');
+        ->orderBy('m.nbjours');
 
         $query = $sub->getQuery();
         return $query->getResult();
-    }   
+    }
+
+
 //    /**
 //     * @return Session[] Returns an array of Session objects
 //     */
