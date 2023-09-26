@@ -20,6 +20,12 @@ class SessionController extends AbstractController
     {
 
         $sessions = $sessionRepository->findBy([], ["titre" => "ASC"]);
+        $sessionsAVenir = $sessionRepository->findSessionsAVenir();
+        $sessionsEnCours = $sessionRepository->findSessionsEnCours();
+        $sessionsFinies = $sessionRepository->findSessionsFinies();
+        $currentDate = new \DateTime;
+        $currentDate = $currentDate->format("Y-m-D");
+
 
         // foreach ($sessions as $session) Trying to do counting via controller  i get good arrays but i dunno how i can use it to say give index 0 to session id 1 etc.
         // {
@@ -34,8 +40,14 @@ class SessionController extends AbstractController
 
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
+            'sessionsAVenir' => $sessionsAVenir,
+            'sessionsEnCours' => $sessionsEnCours,
+            'sessionsFinies' => $sessionsFinies,
+            'currentDate' => $currentDate
             // 'arrayCount' => $arrayCount,
         ]);
+
+
     }
 
 
