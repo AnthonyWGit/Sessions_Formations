@@ -65,6 +65,6 @@ class Programme
 
     public function __toString()
     {
-        return $this->session." ".$this->module_session." "." ".$this->nbjours;
+        return $this->session." ".$this->module_session." "." ".$this->nbjours. " jours";
     }
 }
