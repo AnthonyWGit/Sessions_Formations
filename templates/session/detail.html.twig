@@ -11,7 +11,9 @@
             aucun module n'a été trouvé.
         {% else %}
             {% for prog in session.programmes %} 
-                {{ prog.moduleSession.nom }}
+                {% if prog.moduleSession is not null %}
+                    {{ prog.moduleSession.nom }}
+                {% endif %}
             {% endfor %}
         {% endif %}
     </p>
@@ -63,15 +65,19 @@
     <ul>
         {% for stagiaire in stagiairesNonInscrits %}
             <li>
-                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <a href=" {{path ('addStagiaire', {'id2' : stagiaire.id , 'session2' : session.id }) }}">+</a>
+                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <a href=" {{path ('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">+</a>
             </li>
         {% endfor %}
     </ul>
     <p>Ajouter un module dans la session ? </p>
     <ul>
-        {% for programme in modulesnonconcernes %}
+        {% for module in modulesnonconcernes %}
             <li>
-                {{ programme.moduleSession.nom }} ({{programme.nbjours}} jours)
+                <form method="post" action="{{ path('addModule', {'id' : module.id , 'session' : session.id , 'moduleSession' : module.id}) }}"
+                <label for="programme"> {{module}} </label>
+                <input type="number" name="number" required>
+                <input type="submit">
+                </form>
             </li>
         {% endfor %}
     </ul>
