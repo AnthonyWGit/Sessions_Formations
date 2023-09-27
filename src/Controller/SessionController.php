@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    
     #[Route('/sessions', name: 'globalSession')]
     public function index(SessionRepository $sessionRepository): Response
     {
@@ -58,6 +59,16 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('globalSession');
     }
 
+    #[Route('/session_session/remove/stagiaire/{id}/{session}', name: 'removeStagiaire', priority: 1000 )] //Higher prio 
+    public function removeStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $session->getId();
+        var_dump($idToRedirect);
+        $session->removeStagiaire($stagiaire);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailSession', $idToRedirect);
+    }
 
     #[Route('/session/new', name: 'newSession')]
     #[Route('/session/{id}/edit', name: 'editSession')]
@@ -102,17 +113,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/{id}/remove/{session2}/', name: 'removeStagiaire', priority: 2)] //Higher prio 
-    public function removeStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
-    {
-        $idToRedirect = [];
-        $idToRedirect['id'] = $session->getId();
-        var_dump($idToRedirect);
-        $session->removeStagiaire($stagiaire);
-        $entityManager->flush();
-        return $this->redirectToRoute('detailSession', $idToRedirect);
-    }
-    #[Route('/session/{id}/add/{session}', name: 'addStagiaire', priority: 3)]
+    #[Route('/session/{id2}/add/{session2}', name: 'addStagiaire', priority: 0)]
     public function addStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
     {
         $idToRedirect = [];
@@ -121,6 +122,5 @@ class SessionController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('detailSession', $idToRedirect);
     }
-
 
 }
