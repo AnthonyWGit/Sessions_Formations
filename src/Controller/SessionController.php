@@ -128,13 +128,26 @@ class SessionController extends AbstractController
     #[Route('/session/{id}/addModule/{session}', name: 'addModule')]
     public function addProgramme(ModuleSession $modulesession, Session $session, EntityManagerInterface $entityManager): Response
     {
+        //adding a new module means creatig a new programme
         $programme = new Programme;
         $idToRedirect = [];
         $idToRedirect['id'] = $session->getId();
+        //setting new programme properties
         $programme->setNbJours(intval($_POST["number"]));
         $programme->setModuleSession($modulesession);
         $programme->setSession($session);
         $session->addProgramme($programme);
+        $entityManager->persist($programme);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailSession', $idToRedirect);
+    }
+
+    #[Route('/session/{id}/removeProgramme/{programme}', name: 'removeProgramme')]
+    public function removeProgramme(Programme $programme, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $session->getId();
+        $session->removeProgramme($programme);
         $entityManager->persist($programme);
         $entityManager->flush();
         return $this->redirectToRoute('detailSession', $idToRedirect);
