@@ -91,26 +91,27 @@ class SessionRepository extends ServiceEntityRepository
 
     public function findModulesNonConcernes($session_id)
     {
-        $em = $this->getEntityManager();
-        $sub = $em->createQueryBuilder();
-
-        $queryBuilder = $sub;
-
-        $queryBuilder
-        ->select("s")
-        ->from("app\Entity\Programme", "s")
-        ->leftJoin("s.session", 'se')
-        ->where('se.id = :id');
-
-        $sub = $em->createQueryBuilder();
+        $entityManager = $this->getEntityManager();
+        $sub = $entityManager->createQueryBuilder();
+    
+        // Select all module_session.id from the specified session
         $sub
-        ->select('m')
-        ->from('App\Entity\Programme', 'm')
-        ->where($sub->expr()->notIn('m.id', $queryBuilder->getDQL()))
-        ->setParameter('id' , $session_id)
-        ->orderBy('m.nbjours');
-
-        $query = $sub->getQuery();
+            ->select('ms.id')
+            ->from('App\Entity\ModuleSession', 'ms')
+            ->leftJoin('ms.programmes', 'p')
+            ->leftJoin('p.session', 's')
+            ->where('s.id = :id');
+    
+        // Create the main query to select module_session entities NOT IN the subquery result
+        $queryBuilder = $entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select('ms2')
+            ->from('App\Entity\ModuleSession', 'ms2')
+            ->where($queryBuilder->expr()->notIn('ms2.id', $sub->getDQL()))
+            ->setParameter('id', $session_id);
+    
+        // Get the result
+        $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
 
