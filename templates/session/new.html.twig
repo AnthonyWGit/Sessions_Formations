@@ -3,6 +3,20 @@
 {% block title %} +++ session {% endblock %}
 
 {% block body %}
-    <h1>Ouvrir une session</h1>
-    {{ form(formNewSession) }}    
+<h1>Ouvrir une session</h1>
+<div class="formGlobal">
+    {{ form_start(formNewSession) }}
+        <div class="formInside">
+            <div class="test">
+            {{form_row(formNewSession.titre)}}
+        </div>
+            {{form_row(formNewSession.dateSessionDebut)}}
+            {{form_row(formNewSession.dateSessionFin)}}
+            {{form_row(formNewSession.places)}}
+            {{form_row(formNewSession.formation)}}
+            {{form_row(formNewSession.formateur)}}
+            {{form_row(formNewSession.valider)}}
+        </div>
+    {{ form_end(formNewSession) }}
+</div>    
 {% endblock %}
