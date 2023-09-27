@@ -12,7 +12,7 @@
         {% else %}
             {% for prog in session.programmes %} 
                 {% if prog.moduleSession is not null %}
-                    {{ prog.moduleSession.nom }}
+                    {{ prog.moduleSession.nom }} 
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -31,9 +31,9 @@
 
     <p>Modules inclus dans cette session de formation</p>
 
-    <ul>
+    <ul class="modules">
         {% for programme in session.programmes %}
-            <li> {{ programme.moduleSession }} {{programme.nbjours}} jours.</li>
+            <li> {{ programme.moduleSession }} {{programme.nbjours}} jours.  <a href="{{path ('removeProgramme', {'id' : session.id , 'programme' : programme.id }) }}" class="looksLikeAButton">Enlever</a></li>
         {% endfor %}
     </ul>
 
