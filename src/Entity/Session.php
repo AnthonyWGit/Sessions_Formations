@@ -37,7 +37,7 @@ class Session
     #[ORM\ManyToOne(inversedBy: 'sessions')]
     private ?Formateur $formateur = null;
 
-    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, orphanRemoval:true)]
     private Collection $programmes;
 
     public function __construct()
