@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
+use App\Entity\ModuleSession;
 use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -113,7 +115,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/{id2}/add/{session2}', name: 'addStagiaire', priority: 0)]
+    #[Route('/session/addStagiaire/{id}/{session}', name: 'addStagiaire')]
     public function addStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
     {
         $idToRedirect = [];
@@ -123,4 +125,18 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('detailSession', $idToRedirect);
     }
 
+    #[Route('/session/{id}/addModule/{session}', name: 'addModule')]
+    public function addProgramme(ModuleSession $modulesession, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $programme = new Programme;
+        $idToRedirect = [];
+        $idToRedirect['id'] = $session->getId();
+        $programme->setNbJours(intval($_POST["number"]));
+        $programme->setModuleSession($modulesession);
+        $programme->setSession($session);
+        $session->addProgramme($programme);
+        $entityManager->persist($programme);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailSession', $idToRedirect);
+    }
 }
