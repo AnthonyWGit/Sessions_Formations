@@ -4,9 +4,21 @@
 
 {% block body %}
     <h1>Ajouter une catégorie</h1>
-    {{ form_start(formNewCategorie) }}
-        {{ form_row(formNewCategorie.nomCategorie) }}
-    {{ form_end(formNewCategorie) }}
-
+    <div class="formGlobal">
+        {{ form_start(formNewCategorie) }}
+        <div class="formInside">
+            <div class="formRow">
+            {{ form_label(formNewCategorie.nomCategorie) }}
+            {{ form_widget(formNewCategorie.nomCategorie) }}
+            {{ form_help(formNewCategorie.nomCategorie) }}
+            {{ form_errors(formNewCategorie.nomCategorie) }}
+            </div>
+            <div class="formRow">
+            {{ form_label(formNewCategorie.valider) }}
+            {{ form_widget(formNewCategorie.valider) }}
+            </div>
+        </div>
+        {{ form_end(formNewCategorie) }}
+    </div>
     
 {% endblock %}

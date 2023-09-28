@@ -7,14 +7,42 @@
 <div class="formGlobal">
     {{ form_start(formNewSession) }}
         <div class="formInside">
-            <div class="test">
-            {{form_row(formNewSession.titre)}}
-        </div>
-            {{form_row(formNewSession.dateSessionDebut)}}
-            {{form_row(formNewSession.dateSessionFin)}}
-            {{form_row(formNewSession.places)}}
-            {{form_row(formNewSession.formation)}}
-            {{form_row(formNewSession.formateur)}}
+            <div class="formRow">
+                {{ form_label(formNewSession.titre)}}
+                {{ form_widget(formNewSession.titre)}}
+                {{ form_help(formNewSession.titre)}}
+                {{ form_errors(formNewSession.titre)}}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.dateSessionDebut)}}
+                {{ form_widget(formNewSession.dateSessionDebut)}}
+                {{ form_help(formNewSession.dateSessionDebut)}}
+                {{ form_errors(formNewSession.dateSessionDebut)}}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.dateSessionFin)}}
+                {{ form_widget(formNewSession.dateSessionFin)}}
+                {{ form_help(formNewSession.dateSessionFin)}}
+                {{ form_errors(formNewSession.dateSessionFin)}}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.places)}}
+                {{ form_widget(formNewSession.places)}}
+                {{ form_help(formNewSession.places)}}
+                {{ form_errors(formNewSession.places)}}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.formation)}}
+                {{ form_widget(formNewSession.formation)}}
+                {{ form_help(formNewSession.formation)}}
+                {{ form_errors(formNewSession.formation)}}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.formateur)}}
+                {{ form_widget(formNewSession.formateur)}}
+                {{ form_help(formNewSession.formateur)}}
+                {{ form_errors(formNewSession.formateur)}}
+            </div>
             {{form_row(formNewSession.valider)}}
         </div>
     {{ form_end(formNewSession) }}

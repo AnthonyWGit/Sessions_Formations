@@ -4,14 +4,43 @@
 
 {% block body %}
     <h1>Ajouter un stagiaire</h1>
+    <div class="formGlobal">
     {{ form_start(formNewStagiaire) }}
-        {{ form_row(formNewStagiaire.nom) }}
-        {{ form_row(formNewStagiaire.prenom) }}
-        {{ form_row(formNewStagiaire.dateDeNaissance) }}
-        {{ form_row(formNewStagiaire.email) }}
-        {{ form_row(formNewStagiaire.sessions) }}
+        <div class="formInside">
+            <div class="formRow">
+                {{ form_label(formNewStagiaire.nom) }}
+                {{ form_widget(formNewStagiaire.nom) }}
+                {{ form_help(formNewStagiaire.nom) }}
+                {{ form_errors(formNewStagiaire.nom) }}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewStagiaire.prenom) }}
+                {{ form_widget(formNewStagiaire.prenom) }}
+                {{ form_help(formNewStagiaire.prenom) }}
+                {{ form_errors(formNewStagiaire.prenom) }}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewStagiaire.dateDeNaissance) }}
+                {{ form_widget(formNewStagiaire.dateDeNaissance) }}
+                {{ form_help(formNewStagiaire.dateDeNaissance) }}
+                {{ form_errors(formNewStagiaire.dateDeNaissance) }}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewStagiaire.email) }}
+                {{ form_widget(formNewStagiaire.email) }}
+                {{ form_help(formNewStagiaire.email) }}
+                {{ form_errors(formNewStagiaire.email) }}
+            </div>
+            <div class="formRow">
+                {{ form_label(formNewStagiaire.sessions) }}
+                {{ form_widget(formNewStagiaire.sessions) }}
+                {{ form_help(formNewStagiaire.sessions) }}
+                {{ form_errors(formNewStagiaire.sessions) }}
+            </div>
         {{ form_row(formNewStagiaire.valider) }}
+        </div>
     {{ form_end(formNewStagiaire) }}
+    </div>
 
     
 {% endblock %}
