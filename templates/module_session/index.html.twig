@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Liste des modules disponibles</h1>
+    <p>
+        Note : dans la version de l'intranet actuelle il faut d'abord cliquer sur "Réinitialiser la durée pour supprimer un module".Si le bouton "programmer un module apparaît", alors le module peut être supprimé.
+    </p>
     <div class="topPage">
         {% if is_granted('ROLE_ADMIN') %}
             <a class="looksLikeAButton" href="{{path("newModuleSession")}}">
@@ -20,21 +23,22 @@
                 <p>
                     Pas de durée disponible. Aucune session ne propose ce module.
                 </p>
-                <a href=" {{ path("newProgramme") }}" class="looksLikeAButton">Programmer le module.</a> 
-                <a href=" {{ path("deleteModuleSession" ,{'id' : module.id}) }}" class="looksLikeAButton">Supprimer le module.</a> 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href=" {{ path("newProgramme") }}" class="looksLikeAButton">Programmer le module.</a> 
+                    <a href=" {{ path("deleteModuleSession" ,{'id' : module.id}) }}" class="looksLikeAButton">Supprimer le module.</a> 
+                {% endif %}
             {% else %}
                 {% for programme in module.programmes %}
                 <p>
                     Durée du module : {{ programme.nbJours }} jours. Module en cours dans {{ programme.session}}.
-                    <a href=" {{path("editProgramme" , {'id' : programme.id}) }}">Reprogrammer le module.</a>
-                    <a href=" {{ path("deleteProgramme" ,{'id' : programme.id}) }}" class="looksLikeAButton">Réinitialiser le module.</a> 
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="looksLikeAButton" href=" {{path("editProgramme" , {'id' : programme.id}) }}">Reprogrammer le module.</a>
+                        <a href=" {{ path("deleteProgramme" ,{'id' : programme.id}) }}" class="looksLikeAButton">Réinitialiser le module.</a> 
+                    {% endif %}
                 </p>
                 {% endfor %}
             {% endif %}
         {% endfor %}
         </ul>
 
-        <p>
-            Note : dans la version de l'intranet actuelle il faut d'abord cliquer sur "Réinitialiser la durée pour supprimer un module".Si le bouton "programmer un module apparaît", alors le module peut être supprimé.
-        </p>
 {% endblock %}
