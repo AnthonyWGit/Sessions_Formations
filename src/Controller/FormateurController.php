@@ -22,8 +22,8 @@ class FormateurController extends AbstractController
         ]);
     }
 
-    #[Route('/formateur/new', name: 'newFormateur')]
-    #[Route('/formateur/{id}/edit', name: 'editFormateur')]
+    #[Route('admin/formateur/new', name: 'newFormateur')]
+    #[Route('admin/formateur/{id}/edit', name: 'editFormateur')]
     public function new(Formateur $formateur = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -50,7 +50,7 @@ class FormateurController extends AbstractController
         return $this->render("formateur/new.html.twig", ['formNewFormateur' => $form]);
     }
 
-    #[Route('/formateur/{id}/delete', name: 'deleteFormateur')]
+    #[Route('admin/formateur/{id}/delete', name: 'deleteFormateur')]
     public function formateurDelete(Formateur $formateur, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($formateur);

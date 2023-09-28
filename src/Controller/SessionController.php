@@ -53,7 +53,7 @@ class SessionController extends AbstractController
 
     }
 
-    #[Route('/session/{id}/delete', name: 'deleteSession')]
+    #[Route('admin/session/{id}/delete', name: 'deleteSession')]
     public function sessionDelete(Session $session, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($session);
@@ -72,8 +72,8 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('detailSession', $idToRedirect);
     }
 
-    #[Route('/session/new', name: 'newSession')]
-    #[Route('/session/{id}/edit', name: 'editSession')]
+    #[Route('admin/session/new', name: 'newSession')]
+    #[Route('admin/session/{id}/edit', name: 'editSession')]
     public function new(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -103,7 +103,7 @@ class SessionController extends AbstractController
 
 
 
-    #[Route('/session/{id}', name: 'detailSession')]
+    #[Route('admin/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
     {
         $totalNbJours = 0;
@@ -121,7 +121,7 @@ class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/addStagiaire/{id}/{session}', name: 'addStagiaire')]
+    #[Route('admin/session/addStagiaire/{id}/{session}', name: 'addStagiaire')]
     public function addStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
     {
         $idToRedirect = [];
@@ -131,7 +131,7 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('detailSession', $idToRedirect);
     }
 
-    #[Route('/session/{id}/addModule/{session}', name: 'addModule')]
+    #[Route('admin/session/{id}/addModule/{session}', name: 'addModule')]
     public function addProgramme(Request $request, ModuleSession $modulesession, Session $session, EntityManagerInterface $entityManager): Response
     {
         //adding a new module means creatig a new programme
@@ -150,7 +150,7 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('detailSession', $idToRedirect);
     }
 
-    #[Route('/session/{id}/removeProgramme/{programme}', name: 'removeProgramme')]
+    #[Route('admin/session/{id}/removeProgramme/{programme}', name: 'removeProgramme')]
     public function removeProgramme(Programme $programme, Session $session, EntityManagerInterface $entityManager): Response
     {
         $idToRedirect = [];

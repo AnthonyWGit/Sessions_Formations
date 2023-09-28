@@ -22,8 +22,8 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/new', name: 'newCategorie')]
-    #[Route('/categorie/{id}/edit', name: 'editCategorie')]
+    #[Route('admin/categorie/new', name: 'newCategorie')]
+    #[Route('admin/categorie/{id}/edit', name: 'editCategorie')]
     public function new_edit(Categorie $categorie = null, Request $request, EntityManagerInterface $entityManager): Response
     {//Initialized at null so when categort doesn't exist it'll create a new one
         // creates a task object and initializes some data for this example
@@ -53,7 +53,7 @@ class CategorieController extends AbstractController
         return $this->render("categorie/new.html.twig", ['formNewCategorie' => $form]);
     }
    
-    #[Route('/categorie/{id}/delete', name: 'deleteCategorie')]
+    #[Route('admin/categorie/{id}/delete', name: 'deleteCategorie')]
     public function categorieDelete(Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($categorie);

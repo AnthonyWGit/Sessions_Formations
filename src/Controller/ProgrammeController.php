@@ -20,8 +20,8 @@ class ProgrammeController extends AbstractController
         ]);
     }
 
-    #[Route('/programme/new', name: 'newProgramme')]
-    #[Route('/programme/{id}/edit', name: 'editProgramme')]
+    #[Route('admin/programme/new', name: 'newProgramme')]
+    #[Route('admin/programme/{id}/edit', name: 'editProgramme')]
     public function new(Programme $programme = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -48,7 +48,7 @@ class ProgrammeController extends AbstractController
         return $this->render("programme/new.html.twig", ['formNewProgramme' => $form]);
     }
 
-    #[Route('/programme/{id}/delete', name: 'deleteProgramme')]
+    #[Route('admin/programme/{id}/delete', name: 'deleteProgramme')]
     public function formateurDelete(Programme $programme, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($programme);

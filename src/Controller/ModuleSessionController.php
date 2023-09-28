@@ -24,8 +24,8 @@ class ModuleSessionController extends AbstractController
         ]);
     }
 
-    #[Route('/modulesession/new', name: 'newModuleSession')]
-    #[Route('/modulesession/{id}/edit', name: 'editModuleSession')]
+    #[Route('admin/modulesession/new', name: 'newModuleSession')]
+    #[Route('admin/modulesession/{id}/edit', name: 'editModuleSession')]
     public function new(ModuleSession $modulesession = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -52,7 +52,7 @@ class ModuleSessionController extends AbstractController
         return $this->render("module_session/new.html.twig", ['formNewModuleSession' => $form]);
     }
 
-    #[Route('/modulesession/{id}/delete', name: 'deleteModuleSession')]
+    #[Route('admin/modulesession/{id}/delete', name: 'deleteModuleSession')]
     public function moduleSessionDelete(ModuleSession $modulesession, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($modulesession);
