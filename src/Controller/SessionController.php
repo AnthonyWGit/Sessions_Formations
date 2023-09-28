@@ -103,7 +103,7 @@ class SessionController extends AbstractController
 
 
 
-    #[Route('admin/session/{id}', name: 'detailSession')]
+    #[Route('session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
     {
         $totalNbJours = 0;
