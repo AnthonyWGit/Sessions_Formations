@@ -19,6 +19,21 @@ a
     gap: 0.8rem;
     align-items: center;
 }
+
+.encardC
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: inset 2px;
+    background-color: khaki;
+    padding: 3rem 0 3rem 0;
+    border-radius: 10px;
+    gap: 0.8rem;
+    align-items: center;
+    flex-grow: 1;
+}
+
 .encard p
 {
     margin: 0;
