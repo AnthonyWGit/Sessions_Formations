@@ -5,11 +5,11 @@
 {% block body %}
 <div class="encard">
     <h1>Détail de {{ stagiaire }} </h1>
-    <p>Email : {{ stagiaire.email }} </p>
-    <p>Age : {{ stagiaire.age }}</p>
-    <p>Inscrit aux sessions : 
+    <p><b>Email</b> : <i>{{ stagiaire.email }}</i> </p>
+    <p><b>Age</b> : <i>{{ stagiaire.age }}</i></p>
+    <p><b>Inscrit-e aux sessions :</b>
         {% for session in stagiaire.sessions %}
-            <a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a>
+            <i><a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a></i>
         {% endfor %}
     </p>
 </div>
