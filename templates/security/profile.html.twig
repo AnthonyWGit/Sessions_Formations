@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="encardC">
+    <div class="topPage">
+        <a class="looksLikeAButtonScarlet" href=" {{path("modifyCredentials", {'id' : app.user.id}) }}">Modifier vos informations de profil</a>
+    </div>
+</div>
+
+{% endblock %}
