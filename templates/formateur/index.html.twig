@@ -5,9 +5,11 @@
 {% block body %}
 <h1>Voici la liste des référents de session</h1>
 
-    <div class="topPage">
-            <a href=" {{ path("newFormateur") }}"><div class="looksLikeAButton">Ajouter  un formateur</div></a>
-    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="topPage">
+                <a href=" {{ path("newFormateur") }}"><div class="looksLikeAButton">Ajouter  un formateur</div></a>
+        </div>
+    {% endif %}
 
 <div class="cardBoard">
     {% for formateur in formateurs %}
@@ -20,12 +22,16 @@
             <div class="imgCard">
                 <img src=" {{asset('img/iconT.png')}}" alt="profile">
             </div>
-            <div class="looksLikeAButtonGrey">
-                <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a>
-            </div>
-            <div class="looksLikeAButtonGrey">
-                <a href="{{ path("deleteFormateur" , {'id' : formateur.id}) }}">Supprimer</a>
-            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="looksLikeAButtonGrey">
+                    <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a>
+                </div>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="looksLikeAButtonGrey">
+                    <a href="{{ path("deleteFormateur" , {'id' : formateur.id}) }}">Supprimer</a>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 </div>

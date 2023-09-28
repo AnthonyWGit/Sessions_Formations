@@ -4,7 +4,11 @@
 
 {% block body %}
     <h1>Liste des sessions</h1>
-    <p class="topPage"> <a class="green" href=" {{ path('newSession')}} ">Ajouter </a>une session</p>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p class="topPage">
+            <a class="green" href=" {{ path('newSession')}} ">Ajouter une session</a>
+        </p>
+    {% endif %}
     <div class="board">
         {% for session in sessions %}
             <ul>
@@ -15,7 +19,9 @@
                 {% else %}
                     <p>La session est fermée</p>
                 {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}" class="looksLikeAButtonScarlet">Supprimer la session</a></p>
+                {% endif %}
             </ul>
         {% endfor %}
     </div>

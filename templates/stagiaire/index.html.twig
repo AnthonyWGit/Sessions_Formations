@@ -6,8 +6,10 @@
 
     <h1>Bonjour Visiteur</h1>
     <div class="regle">
-        <h2 class="titrePage">Stagiaires liste</h2>         
-        <a href="{{ path('newStagiaire') }}"><div class="looksLikeAButton">Ajouter un stagiaire</div></a>
+        <h2 class="titrePage">Stagiaires liste</h2>      
+        {% if is_granted('ROLE_ADMIN') %}   
+            <a href="{{ path('newStagiaire') }}"><div class="looksLikeAButton">Ajouter un stagiaire</div></a>
+        {% endif %}
     </div>
 
     <div class="cardBoard">
@@ -19,8 +21,11 @@
                         <img src=" {{asset('img/iconT.png')}}" alt="profile">
                     </div>
                     <p class="detail">Voir les détails du stagiaire : <a class="blue" href=" {{path("detailStagiaire", {'id' : stagiaire.id}) }}"> Ici</a></p>
-                    <p class="detail"><a href=" {{path("deleteStagiaire", {'id' : stagiaire.id}) }}">Supprimer </a></p>
-
+                    {% if is_granted('ROLE_ADMIN') %} 
+                        <p class="detail">
+                            <a href=" {{path("deleteStagiaire", {'id' : stagiaire.id}) }}">Supprimer </a>
+                        </p>
+                    {% endif %}
             </div>
             {% endfor %}
     </div>

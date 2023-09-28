@@ -4,13 +4,13 @@
 
 {% block body %}
     <h1>Liste des modules disponibles</h1>
-        <a href="{{path("newModuleSession")}}">
-            <div class="topPage">
-            <div class="looksLikeAButton">
-                Nouveau module
-            </div>
-            </div>
-        </a>
+    <div class="topPage">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="looksLikeAButton" href="{{path("newModuleSession")}}">
+                    Nouveau module
+            </a>
+        {% endif %}
+    </div>
         <ul>
         {% for module in modulesSession %}
             <li class="spacing">

@@ -33,7 +33,12 @@
 
     <ul class="modules">
         {% for programme in session.programmes %}
-            <li> {{ programme.moduleSession }} {{programme.nbjours}} jours.  <a href="{{path ('removeProgramme', {'id' : session.id , 'programme' : programme.id }) }}" class="looksLikeAButton">Enlever</a></li>
+            <li> 
+                {{ programme.moduleSession }} {{programme.nbjours}} jours. 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{path ('removeProgramme', {'id' : session.id , 'programme' : programme.id }) }}" class="looksLikeAButton">Enlever</a>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
 
@@ -42,7 +47,9 @@
         <ul>
             {% for stagiaire in session.stagiaires %}
                 <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
-                <a href=" {{path ('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">- </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href=" {{path ('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">- </a>
+                {% endif %}
             {% endfor %}
         </ul>
     {% else %}
@@ -54,31 +61,38 @@
             {% for stagiaire in session.stagiaires %}
                 <li>
                     <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a>
-                    <a href=" {{ path('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">-</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href=" {{ path('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">-</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
         {% endif %}
     {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}    
     <p><a class="looksLikeAButton" href=" {{ path("editSession", {"id" : session.id }) }}">Modifier les détails de la session</a></p>
-    <p>Ajouter un stagiaire à la session ? </p> 
-    <ul>
-        {% for stagiaire in stagiairesNonInscrits %}
-            <li>
-                <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> <a href=" {{path ('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">+</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <p>Ajouter un module dans la session ? </p>
-    <ul>
-        {% for module in modulesnonconcernes %}
-            <li>
-                <form method="post" action="{{ path('addModule', {'id' : module.id , 'session' : session.id , 'moduleSession' : module.id}) }}"
-                <label for="programme"> {{module}} </label>
-                <input type="number" name="number" required>
-                <input type="submit">
-                </form>
-            </li>
-        {% endfor %}
+        <p>Ajouter un stagiaire à la session ? </p> 
+        <ul>
+            {% for stagiaire in stagiairesNonInscrits %}
+                <li>
+                    <a href=" {{path ('detailStagiaire', {'id' : stagiaire.id}) }}">{{ stagiaire }}</a> 
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href=" {{path ('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">+</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Ajouter un module dans la session ? </p>
+        <ul>
+            {% for module in modulesnonconcernes %}
+                <li>
+                    <form method="post" action="{{ path('addModule', {'id' : module.id , 'session' : session.id , 'moduleSession' : module.id}) }}"
+                    <label for="programme"> {{module}} </label>
+                    <input type="number" name="number" required>
+                    <input type="submit">
+                    </form>
+                </li>
+            {% endfor %}
+    {% endif %}
     </ul>
 {% endblock %}

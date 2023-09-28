@@ -5,14 +5,18 @@
 {% block body %}
     <h1>Liste des catégories</h1>
     <div class="topPage">
+        {% if is_granted('ROLE_ADMIN') %}
         <a href=" {{path('newCategorie')}}" class="looksLikeAButton">Ajouter une catégorie</a>
+        {% endif %}
     </div>
     <div class="cardBoard">
     {% for categorie in categories %}
         <div class="card">
             <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> {{categorie}} </a> 
-            <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Edit</a>
-            <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Delete</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Edit</a>
+                <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Delete</a>
+            {% endif %}
         </div>
     {% endfor %}
     </div>
