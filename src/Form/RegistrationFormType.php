@@ -34,7 +34,8 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'password-field'],
+                'row_attr' => ['class' => 'formRow']], //This allows us to have class on our formRow and we don't have to write widget/labels/etc
                 'required' => true,
                 'first_options' => ['label' => 'Mot de Passe'],
                 'second_options' => ["label" => 'Entrez le Mot de passe à nouveau'],
