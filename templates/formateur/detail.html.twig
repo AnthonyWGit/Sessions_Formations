@@ -3,6 +3,7 @@
 {% block title %}Hello FormateurDetail{% endblock %}
 
 {% block body %}
+<div class="encard">
     <h1>{{ formateur }} est référent-e des sessions </h1>
         {% for session in formateur.sessions %}
             <li>{{ session }}</li>
@@ -11,4 +12,5 @@
     <p>
         Contactez le formateur : <a href="mailto:{{formateur.email}}">{{ formateur.email }}</a>
     </p>
+</div>
 {% endblock %}
