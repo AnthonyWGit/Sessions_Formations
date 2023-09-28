@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Liste des sessions</h1>
+    <p class="topPage"> <a class="green" href=" {{ path('newSession')}} ">Ajouter </a>une session</p>
     <div class="board">
         {% for session in sessions %}
             <ul>
@@ -14,10 +15,10 @@
                 {% else %}
                     <p>La session est fermée</p>
                 {% endif %}
-                <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}">Supprimer la session</a></p>
+                <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}" class="looksLikeAButtonScarlet">Supprimer la session</a></p>
             </ul>
         {% endfor %}
     </div>
         
-    <p> <a href=" {{ path('newSession')}} ">Ajouter</a> une session</p>
+
 {% endblock %}
