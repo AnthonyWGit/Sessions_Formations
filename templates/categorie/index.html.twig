@@ -4,13 +4,17 @@
 
 {% block body %}
     <h1>Liste des catégories</h1>
-
+    <div class="topPage">
+        <a href=" {{path('newCategorie')}}" class="looksLikeAButton">Ajouter une catégorie</a>
+    </div>
+    <div class="cardBoard">
     {% for categorie in categories %}
-        <p> 
+        <div class="card">
             <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> {{categorie}} </a> 
-            <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} ">Edit</a>
-            <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} ">Delete</a>
-        </p>
+            <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Edit</a>
+            <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Delete</a>
+        </div>
     {% endfor %}
+    </div>
 {% endblock %}
 
