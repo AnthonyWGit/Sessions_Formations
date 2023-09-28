@@ -106,12 +106,18 @@ class SessionController extends AbstractController
     #[Route('/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
     {
+        $totalNbJours = 0;
+        foreach ($session->getProgrammes() as $prog)
+        {
+            $totalNbJours = $totalNbJours + $prog->getNbJours();
+        }
         $stagiairesNonInscrits = $sessionRepo->findNonInscrits($session->getId());
         $modulesnonconcernes = $sessionRepo->findModulesNonConcernes($session->getId());
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'stagiairesNonInscrits' => $stagiairesNonInscrits,
-            'modulesnonconcernes' => $modulesnonconcernes
+            'modulesnonconcernes' => $modulesnonconcernes,
+            'totalNbJours' => $totalNbJours
         ]);
     }
 
@@ -126,14 +132,16 @@ class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}/addModule/{session}', name: 'addModule')]
-    public function addProgramme(ModuleSession $modulesession, Session $session, EntityManagerInterface $entityManager): Response
+    public function addProgramme(Request $request, ModuleSession $modulesession, Session $session, EntityManagerInterface $entityManager): Response
     {
         //adding a new module means creatig a new programme
         $programme = new Programme;
         $idToRedirect = [];
         $idToRedirect['id'] = $session->getId();
+        $nbjours = $request->request->get("number"); // get form field named "number"
         //setting new programme properties
-        $programme->setNbJours(intval($_POST["number"]));
+        // $programme->setNbJours(intval($_POST["number"]));  That's what we would do in classic php 
+        $programme->setNbjours($nbjours);
         $programme->setModuleSession($modulesession);
         $programme->setSession($session);
         $session->addProgramme($programme);
