@@ -7,30 +7,44 @@
     <h1>Détail de {{ stagiaire }} </h1>
     <p><b>Email</b> : <i>{{ stagiaire.email }}</i> </p>
     <p><b>Age</b> : <i>{{ stagiaire.age }}</i></p>
-    <p><b>Inscrit-e aux sessions :</b>
-        {% for session in stagiaire.sessions %}
-            <i><a href=" {{ path( "detailSession" , {"id" : session.id }) }}">{{ session.titre }} </a></i>
-        {% endfor %}
-    </p>
-    {% if is_granted('ROLE_ADMIN') %}
-        Ajouter ce stagiaire aux sessions :
-        <table>
-            <thead>
-                <tr>
-                    <th>Session</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for session in sessions %}
-                <tr>
-                    <td>{{ session }}</td>
-                    <td><a href="{{ path( "addStagiaireToSession", {"id" : stagiaire.id, "session" : session.id }) }}">Ajouter</a></td>
-                </tr>
-                {% endfor %}                    
-            </tbody>
-        </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Date de démarrage</th>
+                <th>Date de fin</th>
+                <th>Places restantes</th>
+                <th>Inscrit</th>
+                {% if is_granted("ROLE_ADMIN") %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.titre }}</td>
+                <td>{{ session.dateSessionDebutFormat }}</td>
+                <td>{{ session.dateSessionFinFormat }}</td>
+                <td>{{ session.placesRestantes }}</td>
+                <td>
+                    {% if stagiaire in session.stagiaires %}
+                        Inscrit
+                    {% else %}
+                        Non inscrit
+                    {% endif %}
+                </td>
+                <td>
+                    {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}
+                        <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") and stagiaire in session.stagiaires %}
+                    <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    {% endif %}
-</div>
 {% endblock %}
