@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
+use App\Repository\SessionRepository;
 use App\Repository\StagiaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ class StagiaireController extends AbstractController
     {
         // creates a task object and initializes some data for this example
         $stagiaire = new Stagiaire();
-        $form = $this->createForm(StagiaireType::class , $stagiaire );
+        $form = $this->createForm(StagiaireType::class , $stagiaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
             {
@@ -56,11 +58,33 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}', name: 'detailStagiaire')]
-    public function details(Stagiaire $stagiaire): Response
+    public function details(Stagiaire $stagiaire, SessionRepository $sessionRepository, EntityManagerInterface $entityManager): Response
     {
+        $sessions = $sessionRepository->findSessionsAVenirEtEnCours();
         return $this->render('stagiaire/display.html.twig', [
-            'stagiaire' => $stagiaire
+            'stagiaire' => $stagiaire,
+            'sessions' => $sessions,
         ]);
+    }
+
+    #[Route('admin/stagiaire/add/{id}/{session}', name: 'addStagiaireToSession')]
+    public function addStagiaireToSession(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $stagiaire->getId();
+        $stagiaire->addSession($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailStagiaire', $idToRedirect);
+    }
+
+    #[Route('admin/stagiaire/remove/{id}/{session}', name: 'removeStagiaireToSession')]
+    public function removeStagiaireToSession(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $idToRedirect = [];
+        $idToRedirect['id'] = $stagiaire->getId();
+        $stagiaire->removeSession($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('detailStagiaire', $idToRedirect);
     }
 
 }
