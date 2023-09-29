@@ -35,7 +35,7 @@ class FormateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) 
             {
                 $formateur = $form->getData();
-                $entityManager->persist($formateur); //traditional prepare / execute in SQL
+                $entityManager->persist($formateur); //traditional prepare / execute in SQL MANDATORY for sql equivalents to INSERT 
                 $entityManager->flush();
 
                 $this->addFlash // need to be logged as user to see the flash messages build-in Symfony
@@ -43,7 +43,7 @@ class FormateurController extends AbstractController
                     'notice',
                     'Your changes were saved!'
                 );
-
+                
                 return $this->redirectToRoute('globalFormateur'); //redirect to list stagiaires if everything is ok
             }
         
