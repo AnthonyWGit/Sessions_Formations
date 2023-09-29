@@ -6,13 +6,13 @@
     <h1>Liste des sessions</h1>
     {% if is_granted('ROLE_ADMIN') %}
         <p class="topPage">
-            <a class="green" href=" {{ path('newSession')}} ">Ajouter une session</a>
+            <a class="looksLikeAButtonGreen" href=" {{ path('newSession')}} ">Ajouter une session</a>
         </p>
     {% endif %}
     <div class="board">
         {% for session in sessions %}
             <ul>
-                <li> <a href=" {{ path("detailSession" , {'id' : session.id}) }}">{{ session.titre }}</a></li>
+                <li> <a href=" {{ path("detailSession" , {'id' : session.id}) }}"><b>{{ session.titre }}</b></a></li>
                 <p>Places Max : {{session.places}} </p>
                 {% if currentDate < session.dateSessionFinFormat %}
                     <p>Place(s) restantes : {{ session.placesRestantes }}</p>
