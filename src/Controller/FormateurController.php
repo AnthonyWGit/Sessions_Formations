@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormateurController extends AbstractController
 {
-    #[Route('/formateurs', name: 'globalFormateur')]
+    #[Route('profile/formateurs', name: 'globalFormateur')]
     public function index(FormateurRepository $formateurRepository): Response
     {
         $formateurs = $formateurRepository->findBy([], ["nom" => "ASC"]);
@@ -43,7 +43,7 @@ class FormateurController extends AbstractController
                     'notice',
                     'Your changes were saved!'
                 );
-                
+
                 return $this->redirectToRoute('globalFormateur'); //redirect to list stagiaires if everything is ok
             }
         
@@ -58,7 +58,7 @@ class FormateurController extends AbstractController
         return $this->redirectToRoute('globalCategorie');
     }
 
-    #[Route('/formateur/{id}', name: 'detailFormateur')]
+    #[Route('profile/formateur/{id}', name: 'detailFormateur')]
     public function formateurDetail(Formateur $formateur): Response
     {
         return $this->render('formateur/detail.html.twig', [

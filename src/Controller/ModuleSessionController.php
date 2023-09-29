@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModuleSessionController extends AbstractController
 {
-    #[Route('/modulesession', name: 'globalModuleSession')]
+    #[Route('profile/modulesession', name: 'globalModuleSession')]
     public function index(ModuleSessionRepository $moduleSessionRepository): Response
     {
         $modulesSession = $moduleSessionRepository->findBy([], ["nom" => "ASC"]);

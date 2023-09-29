@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProgrammeController extends AbstractController
 {
-    #[Route('/programme', name: 'app_programme')]
+    #[Route('profile/programme', name: 'app_programme')]
     public function index(): Response
     {
         return $this->render('programme/index.html.twig', [

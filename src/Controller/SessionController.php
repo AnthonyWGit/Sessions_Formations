@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     
-    #[Route('/sessions', name: 'globalSession')]
+    #[Route('profile/sessions', name: 'globalSession')]
     public function index(SessionRepository $sessionRepository): Response
     {
 
@@ -61,7 +61,7 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('globalSession');
     }
 
-    #[Route('/session_session/remove/stagiaire/{id}/{session}', name: 'removeStagiaire', priority: 1000 )] //Higher prio 
+    #[Route('profile/session_session/remove/stagiaire/{id}/{session}', name: 'removeStagiaire', priority: 1000 )] //Higher prio 
     public function removeStagiaire(Stagiaire $stagiaire, Session $session, EntityManagerInterface $entityManager): Response
     {
         $idToRedirect = [];
@@ -103,7 +103,7 @@ class SessionController extends AbstractController
 
 
 
-    #[Route('session/{id}', name: 'detailSession')]
+    #[Route('profile/session/{id}', name: 'detailSession')]
     public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
     {
         $totalNbJours = 0;

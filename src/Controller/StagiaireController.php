@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
-    #[Route('/stagiaires', name: 'globalStagiaire')]
+    #[Route('profile/stagiaires', name: 'globalStagiaire')]
     public function index(StagiaireRepository $stagiaireRepository): Response
     {
         $stagiaires = $stagiaireRepository->findBy([], ["nom" => "ASC"]);
@@ -57,7 +57,7 @@ class StagiaireController extends AbstractController
         $this->redirectToRoute('globalStagiaire');
     }
 
-    #[Route('/stagiaire/{id}', name: 'detailStagiaire')]
+    #[Route('profile/stagiaire/{id}', name: 'detailStagiaire')]
     public function details(Stagiaire $stagiaire, SessionRepository $sessionRepository, EntityManagerInterface $entityManager): Response
     {
         $currDate = new \DateTime('now');

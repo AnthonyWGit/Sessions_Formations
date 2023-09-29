@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/modifyCredentials/{id}', name: 'modifyCredentials')]
+    #[Route(path: 'profile/modifyCredentials/{id}', name: 'modifyCredentials')]
     public function mod(User $user, Request $request, EntityManagerInterface $entityManager) : Response
     { 
         if(!$this->getUser()){
@@ -58,7 +58,7 @@ class SecurityController extends AbstractController
 
     }
 
-    #[Route(path: '/profile', name: 'app_profile')]
+    #[Route(path: 'profile/view', name: 'app_profile')]
     public function profile()
     { 
         return $this->render('security/profile.html.twig');

@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categories', name: 'globalCategorie')]
+    #[Route('profile/categories', name: 'globalCategorie')]
     public function index(CategorieRepository $categorieRepository): Response
     {
         $categories = $categorieRepository->findBy([], ["nomCategorie" => "ASC"]);
