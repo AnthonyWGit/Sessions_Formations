@@ -27,7 +27,7 @@ class SessionRepository extends ServiceEntityRepository
     {
         $now = new \DateTime();
         return $this->createQueryBuilder('s')
-            ->andWhere('s.dateSessionDebut > :now')
+            ->andWhere('s.dateSessionDebut >= :now')
             ->setParameter('now', $now)
             ->orderBy('s.dateSessionDebut', 'ASC')
             ->getQuery()
@@ -35,17 +35,6 @@ class SessionRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findSessionsAVenirEtEnCours(): array
-    {
-        $now = new \DateTime();
-        return $this->createQueryBuilder('s')
-            ->where('s.dateSessionFin < :now')
-            ->setParameter('now', $now)
-            ->orderBy('s.dateSessionFin', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
     public function findSessionsEnCours(): array
 
     {

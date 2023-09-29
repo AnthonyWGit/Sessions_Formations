@@ -60,10 +60,13 @@ class StagiaireController extends AbstractController
     #[Route('/stagiaire/{id}', name: 'detailStagiaire')]
     public function details(Stagiaire $stagiaire, SessionRepository $sessionRepository, EntityManagerInterface $entityManager): Response
     {
-        $sessions = $sessionRepository->findSessionsAVenirEtEnCours();
+        $currDate = new \DateTime('now');
+        $sessions = $sessionRepository->findBy([], ["titre" => "ASC"]);
+
         return $this->render('stagiaire/display.html.twig', [
             'stagiaire' => $stagiaire,
             'sessions' => $sessions,
+            'currDate' => $currDate,
         ]);
     }
 
