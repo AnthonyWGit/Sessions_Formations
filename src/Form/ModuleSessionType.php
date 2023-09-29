@@ -29,7 +29,10 @@ class ModuleSessionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => ModuleSession::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token', // The name of the CSRF field in your form
+            'csrf_token_id' => 'your_csrf_token_id',
         ]);
     }
 }

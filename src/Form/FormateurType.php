@@ -26,6 +26,9 @@ class FormateurType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Formateur::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token', // The name of the CSRF field in your form
+            'csrf_token_id' => 'your_csrf_token_id',
         ]);
     }
 }
