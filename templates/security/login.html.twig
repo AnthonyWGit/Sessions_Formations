@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connectez-vous{% endblock %}
 
 {% block body %}
 
@@ -30,12 +30,12 @@
                     value="{{ csrf_token('authenticate') }}"
                 >
                 <div class="formRow">
-                    <button class="btn btn-lg btn-primary" type="submit">
+                    <button class="looksLikeAButtonScarlet" type="submit">
                         Se connecter
                     </button>
                 </div>
-                <p class="zero">Mot de passe oublié ? </br>
-                <a href="{{ path('app_forgot_password_request') }}">Récupération</a></p>
+                <p class="zero">Mot de passe oublié ? </br> </p>
+                <a class="looksLikeAButtonScarlet" href="{{ path('app_forgot_password_request') }}">Récupération</a>
             </div>
         </div>
 </form>
