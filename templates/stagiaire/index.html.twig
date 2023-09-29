@@ -4,9 +4,8 @@
 
 {% block body %}
 
-    <h1>Bonjour Visiteur</h1>
-    <div class="regle">
-        <h2 class="titrePage">Stagiaires liste</h2>      
+    <h1>Voici les stagiaires enregistrés</h1>
+    <div class="topPage">  
         {% if is_granted('ROLE_ADMIN') %}   
             <a href="{{ path('newStagiaire') }}"><div class="looksLikeAButton">Ajouter un stagiaire</div></a>
         {% endif %}
