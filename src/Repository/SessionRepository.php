@@ -35,6 +35,17 @@ class SessionRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findSessionsAVenirEtEnCours(): array
+    {
+        $now = new \DateTime();
+        return $this->createQueryBuilder('s')
+            ->where('s.dateSessionFin < :now')
+            ->setParameter('now', $now)
+            ->orderBy('s.dateSessionFin', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     public function findSessionsEnCours(): array
 
     {
