@@ -22,7 +22,7 @@ class StagiaireController extends AbstractController
         ]);
     }
 
-    #[Route('/stagiaire/new', name: 'newStagiaire')]
+    #[Route('admin/stagiaire/new', name: 'newStagiaire')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
@@ -47,7 +47,7 @@ class StagiaireController extends AbstractController
         return $this->render("stagiaire/new.html.twig", ['formNewStagiaire' => $form]);
     }
 
-    #[Route('/stagiaire/{id}/delete', name: 'deleteStagiaire')]
+    #[Route('admin/stagiaire/{id}/delete', name: 'deleteStagiaire')]
     public function formateurDelete(Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($stagiaire);
