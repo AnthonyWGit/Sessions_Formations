@@ -75,6 +75,10 @@ class StagiaireController extends AbstractController
     {
         $idToRedirect = [];
         $idToRedirect['id'] = $stagiaire->getId();
+        if ($session->getPlacesRestantes() == 0)
+        {
+            $this->redirectToRoute('detailStagiaire', $idToRedirect);
+        }        
         $stagiaire->addSession($session);
         $entityManager->flush();
         return $this->redirectToRoute('detailStagiaire', $idToRedirect);

@@ -126,6 +126,10 @@ class SessionController extends AbstractController
     {
         $idToRedirect = [];
         $idToRedirect['id'] = $session->getId();
+        if ($session->getPlacesRestantes() == 0)
+        {
+            $this->redirectToRoute('detailSession', $idToRedirect);
+        }        
         $session->addStagiaire($stagiaire);
         $entityManager->flush();
         return $this->redirectToRoute('detailSession', $idToRedirect);
