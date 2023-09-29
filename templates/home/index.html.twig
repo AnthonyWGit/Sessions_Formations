@@ -1,0 +1,12 @@
+{% extends 'home.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p><a href="{{path('app_login')}}">Se connecter</a></p>
+    {% endif %}
+    <p>L'accès à l'intranet est réservé au personnel authentifié</p>
+
+{% endblock %}
