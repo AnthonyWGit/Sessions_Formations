@@ -40,12 +40,23 @@ class ModuleSessionController extends AbstractController
     ): JsonResponse 
     {
         $searchTerm = $request->query->get('searchTerm');
-    
-        // Retrieve the filtered modules data from the repository
         $filteredModules = $moduleSessionRepository->findBy(["nom" => $searchTerm], ["nom" => "ASC"]);
+            // Create an array to store the serialized modules
+    $serializedModules = [];
+
+    foreach ($filteredModules as $module) {
+        // Add the 'nom' property to each module
+        $serializedModule = [
+            'nom' => $module->getNom(),  // Replace with the actual method to retrieve the 'nom' property
+            'categorie' => $module->getCategorie()->getNomCategorie(),
+        ];
+        $serializedModules[] = $serializedModule;
+    }
+        // Retrieve the filtered modules data from the repository
+
     
         // Return the JSON response
-        return new JsonResponse(['modules' => $filteredModules]);
+        return new JsonResponse(['modules' => $serializedModules]);
     }
 
 
