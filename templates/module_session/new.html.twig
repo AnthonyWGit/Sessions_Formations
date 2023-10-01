@@ -4,5 +4,12 @@
 
 {% block body %}
     <h1>Créer un nouveau module </h1>
-    {{ form(formNewModuleSession) }}    
+    <div class="formGlobal">
+        <div class="formInside">
+        {{ form_start(formNewModuleSession) }}
+            {{ form_row(formNewModuleSession.nom) }}
+            {{ form_row(formNewModuleSession.categorie) }}
+        {{ form_end(formNewModuleSession) }}
+        </div>
+    </div>
 {% endblock %}

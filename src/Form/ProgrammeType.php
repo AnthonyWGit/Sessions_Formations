@@ -17,12 +17,22 @@ class ProgrammeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('session', EntityType::class, ['class' => Session::class])
-            ->add('module_session', EntityType::class, ['class' => ModuleSession::class])
-            ->add('nbJours', NumberType::class)
-            ->add('valider', SubmitType::class)
+            ->add('session', EntityType::class, [
+                'class' => Session::class,
+                'row_attr' => ['class' => 'formRow'],
+            ])
+            ->add('module_session', EntityType::class, [
+                'class' => ModuleSession::class,
+                'row_attr' => ['class' => 'formRow'],
+            ])
+            ->add('nbJours', NumberType::class, [
+                'row_attr' => ['class' => 'formRow'],
+            ])
+            ->add('valider', SubmitType::class, [
+                'row_attr' => ['class' => 'formRow'],
+            ])
         ;
-    }
+    }    
 
     public function configureOptions(OptionsResolver $resolver): void
     {

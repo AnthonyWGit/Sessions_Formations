@@ -4,5 +4,14 @@
 
 {% block body %}
     <h1>Programmez le module</h1>
-    {{ form(formNewProgramme) }}    
+    <div class="formGlobal">
+        <div class="formInside">
+        {{ form_start(formNewProgramme) }}
+            {{ form_row(formNewProgramme.session) }}
+            {{ form_row(formNewProgramme.module_session) }}
+            {{ form_row(formNewProgramme.nbJours) }}
+            {{ form_row(formNewProgramme.valider) }}
+        {{ form_end(formNewProgramme) }}
+        </div>
+    </div>
 {% endblock %}

@@ -4,12 +4,15 @@
 
 {% block body %}
     <h1>Ajouter un formateur</h1>
-    {{ form_start(formNewFormateur) }}
-        {{ form_row(formNewFormateur.nom) }}
-        {{ form_row(formNewFormateur.prenom) }}
-        {{ form_row(formNewFormateur.password) }}
-        {{ form_row(formNewFormateur.email) }}
-    {{ form_end(formNewFormateur) }}
-
+    <div class="formGlobal">
+        <div class="formInside">
+        {{ form_start(formNewFormateur) }}
+            {{ form_row(formNewFormateur.nom) }}
+            {{ form_row(formNewFormateur.prenom) }}
+            {{ form_row(formNewFormateur.password) }}
+            {{ form_row(formNewFormateur.email) }}
+        {{ form_end(formNewFormateur) }}
+        </div>
+    </div>
     
 {% endblock %}

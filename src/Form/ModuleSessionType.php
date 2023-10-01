@@ -19,11 +19,16 @@ class ModuleSessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('categorie', EntityType::class, [
-                'class' => Categorie::class,
-            ])
-            ->add('valider', SubmitType::class)
+        ->add('nom', TextType::class, [
+            'row_attr' => ['class' => 'formRow'],
+        ])
+        ->add('categorie', EntityType::class, [
+            'class' => Categorie::class,
+            'row_attr' => ['class' => 'formRow'],
+        ])
+        ->add('valider', SubmitType::class, [
+            'row_attr' => ['class' => 'formRow'],
+        ])
         ;
     }
 
