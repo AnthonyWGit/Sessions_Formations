@@ -17,7 +17,9 @@
             </a>
         {% endif %}
     </div>
-    <input type="text" id="searchInput" data-route="{{ path("filterModuleSession") }}" placeholder="Search...">
+    <div class="topPage">
+        <input type="text" id="searchInput" data-route="{{ path("filterModuleSession") }}" placeholder="Search...">
+    </div>
     <div id="filteredCards">
 
     </div>
@@ -27,8 +29,9 @@
     <div class="cardBoard">
         {% for module in modulesSession %}
                 <div class="card">
-                    {{ module.nom }} | {{ module.categorie }}.
+                    <p class="center"><b>{{ module.nom }}</p></b>
                     <p><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
+                    <p>{{ module.categorie }}</p>
                 </div>
         {% endfor %}
     </div>
