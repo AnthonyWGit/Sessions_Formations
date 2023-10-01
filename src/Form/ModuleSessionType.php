@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Session;
 use App\Entity\Categorie;
 use App\Entity\Programme;
+use App\Entity\ModuleSession;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
