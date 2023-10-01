@@ -1,0 +1,78 @@
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------*/
+.looksLikeAButton
+{
+    background-color: rgba(209, 255, 41, 0.500);
+    border: solid 1.5px black;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.looksLikeAButton:hover
+{
+    background-color: rgba(209, 255, 41, 1.00);
+    transition: 1s;
+}
+
+.looksLikeAButtonGrey
+{
+    background-color: rgb(156, 156, 156, 0.5);
+    border: solid 1.5px rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.looksLikeAButtonGrey:hover
+{
+    background-color: rgb(156, 156, 156, 1);
+    transition: 1s;
+}
+
+.looksLikeAButtonScarlet
+{
+    background-color: rgba(187, 0, 0, 0.5); /* Use rgba to set opacity to 1 */
+    border: solid 1.5px rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.looksLikeAButtonGreen
+{
+    background-color: rgba(27, 199, 24, 0.5); /* Use rgba to set opacity to 1 */
+    border: solid 1.5px rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+}
+
+.looksLikeAButtonGreen:hover
+{
+    background-color: rgba(27, 199, 24, 1); /* Reduce opacity on hover */
+    transition: 1s;
+}
+
+.looksLikeAButtonScarlet:hover
+{
+    background-color: rgba(187, 0, 0, 1); /* Reduce opacity on hover */
+    transition: 1s;
+}
+
+.looksLikeAButtonGrey a
+{
+    text-decoration: none;
+    color: rgb(17, 33, 61) !important;
+}
+
+.looksLikeAButton a
+{
+    text-decoration: none;
+    color: black !important;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------*/
