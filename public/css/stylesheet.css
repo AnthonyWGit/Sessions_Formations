@@ -120,6 +120,15 @@ nav ul
     justify-content: space-evenly;
 }
 
+#filteredCards
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-grow: 1;
+    gap: 0.5rem;
+    justify-content: space-evenly;    
+}
 .regle
 {
     display: flex;
