@@ -7,7 +7,7 @@
     <div class="topPage">
         Note : dans la version actuelle de l'intranet supprimer un module supprime tous les programmes associés
     </div>
-    <div class="topPage">
+    <div class="topPageSpace">
         {% if is_granted('ROLE_ADMIN') %}
             <a class="looksLikeAButton" href="{{ path("newModuleSession") }}">
                 Nouveau module
