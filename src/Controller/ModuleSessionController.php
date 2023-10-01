@@ -8,13 +8,22 @@ use App\Entity\ModuleSession;
 use App\Form\ModuleSessionType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ModuleSessionRepository;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 
 class ModuleSessionController extends AbstractController
 {
+
     #[Route('profile/modulesession', name: 'globalModuleSession')]
     public function index(ModuleSessionRepository $moduleSessionRepository): Response
     {
@@ -23,6 +32,22 @@ class ModuleSessionController extends AbstractController
             'modulesSession' => $modulesSession,
         ]);
     }
+    #[Route('profile/modulesession/filter', name: 'filterModuleSession')]
+    public function filter(
+        Request $request,
+        ModuleSessionRepository $moduleSessionRepository,
+        EntityManagerInterface $entityManager,
+    ): JsonResponse 
+    {
+        $searchTerm = $request->query->get('searchTerm');
+    
+        // Retrieve the filtered modules data from the repository
+        $filteredModules = $moduleSessionRepository->findBy(["nom" => $searchTerm], ["nom" => "ASC"]);
+    
+        // Return the JSON response
+        return new JsonResponse(['modules' => $filteredModules]);
+    }
+
 
     #[Route('admin/modulesession/new', name: 'newModuleSession')]
     #[Route('admin/modulesession/{id}/edit', name: 'editModuleSession')]
@@ -59,4 +84,7 @@ class ModuleSessionController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('globalModuleSession');
     }
+
+  
 }
+

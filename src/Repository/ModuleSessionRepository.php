@@ -21,6 +21,17 @@ class ModuleSessionRepository extends ServiceEntityRepository
         parent::__construct($registry, ModuleSession::class);
     }
 
+
+    // ModuleSessionRepository.php
+    public function filterModulesBySearchTerm($searchTerm)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.nom LIKE :searchTerm')
+            ->setParameter('searchTerm', '%' . $searchTerm . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return ModuleSession[] Returns an array of ModuleSession objects
 //     */
