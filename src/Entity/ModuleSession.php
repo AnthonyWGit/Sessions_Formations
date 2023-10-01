@@ -21,14 +21,14 @@ class ModuleSession
     #[ORM\ManyToOne(inversedBy: 'modules_session')]
     private ?Categorie $categorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'module_session', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'module_session', targetEntity: Programme::class, orphanRemoval: true)]
     private Collection $programmes;
 
     public function __construct()
     {
         $this->programmes = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
