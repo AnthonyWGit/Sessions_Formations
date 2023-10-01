@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Programme;
 use App\Form\ProgrammeType;
+use App\Repository\ProgrammeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,11 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProgrammeController extends AbstractController
 {
-    #[Route('profile/programme', name: 'app_programme')]
-    public function index(): Response
+    #[Route('profile/programmes', name: 'app_programme')]
+    public function index(ProgrammeRepository $programmeRepository): Response
     {
+        $programme = $programmeRepository->findBy([], ["nbjours" => "ASC"]);
         return $this->render('programme/index.html.twig', [
-            'controller_name' => 'ProgrammeController',
+            'programmes' => $programme,
         ]);
     }
 
