@@ -5,6 +5,9 @@
 {% block body %}
     <h1>Liste des modules disponibles</h1>
     <div class="topPage">
+        Note : dans la version actuelle de l'intranet supprimer un module supprime tous les programmes associés
+    </div>
+    <div class="topPage">
         {% if is_granted('ROLE_ADMIN') %}
             <a class="looksLikeAButton" href="{{ path("newModuleSession") }}">
                 Nouveau module
@@ -15,14 +18,17 @@
         {% endif %}
     </div>
     <input type="text" id="searchInput" data-route="{{ path("filterModuleSession") }}" placeholder="Search...">
-    <div id="filteredCards" data-modules="{{ modulesSession | json_encode }}"></div>
+    <div id="filteredCards">
 
     </div>
+
+    </br>
 
     <div class="cardBoard">
         {% for module in modulesSession %}
                 <div class="card">
                     {{ module.nom }} | {{ module.categorie }}.
+                    <p><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
                 </div>
         {% endfor %}
     </div>
