@@ -49,6 +49,7 @@ class ModuleSessionController extends AbstractController
             $serializedModule = [
                 'nom' => $module->getNom(),  // Replace with the actual method to retrieve the 'nom' property
                 'categorie' => $module->getCategorie()->getNomCategorie(),
+                'deleteLink' => 'http://admin/modulession/'. $module->getId() . '/delete' 
             ];
             $serializedModules[] = $serializedModule;
     }
