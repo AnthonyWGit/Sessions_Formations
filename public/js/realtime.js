@@ -17,7 +17,7 @@ $(document).ready(function () {
                     // Access the 'modules' property directly from the response object
                     console.log(data);
                     data.modules.forEach(function (module) {
-                        var card = $('<div class="cardBig"></div>');
+                        var card = $('<div class="card"></div>');
                         card.text(module.nom + '|' + module.categorie);
                         console.log(module);
                         // Append more module details here if needed
