@@ -8,6 +8,9 @@ use App\Repository\SessionRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\LessThan;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,7 +25,15 @@ class StagiaireType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('dateDeNaissance', DateType::class , [
                 'widget' =>'single_text',
+                'constraints' => [
+                    new NotBlank(),
+                    new LessThan([
+                        'message' => 'Cet individu ne peut pas être né dans le futur',
+                        'value' => new \DateTime
+                    ])
+                ]
             ])
+            
             ->add('email', TextType::class)
             ->add('sessions', EntityType::class, [ //Must find a way to display only sessions that have not ended yet
                 "class" => Session::class,
