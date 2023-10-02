@@ -29,6 +29,9 @@
                         <p class="detail">
                             <a href=" {{path("deleteStagiaire", {'id' : stagiaire.id}) }}">Supprimer </a>
                         </p>
+                        <p class="detail">
+                            <a href=" {{path("editStagiaire", {'id' : stagiaire.id}) }}">Editer </a>
+                        </p>
                     {% endif %}
             </div>
             {% endfor %}

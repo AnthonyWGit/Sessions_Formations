@@ -24,11 +24,15 @@ class StagiaireController extends AbstractController
         ]);
     }
 
+    #[Route('admin/stagiaire/{id}/edit', name: 'editStagiaire')]
     #[Route('admin/stagiaire/new', name: 'newStagiaire')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         // creates a task object and initializes some data for this example
-        $stagiaire = new Stagiaire();
+        if ($stagiaire === null) 
+        { 
+            $stagiaire = new Stagiaire();
+        }
         $form = $this->createForm(StagiaireType::class , $stagiaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
@@ -46,7 +50,7 @@ class StagiaireController extends AbstractController
                 return $this->redirectToRoute('globalStagiaire'); //redirect to list stagiaires if everything is ok
             }
         
-        return $this->render("stagiaire/new.html.twig", ['formNewStagiaire' => $form]);
+        return $this->render("stagiaire/new.html.twig", ['formNewStagiaire' => $form, 'edit'=> $stagiaire->getId()]);
     }
 
     #[Route('admin/stagiaire/{id}/delete', name: 'deleteStagiaire')]

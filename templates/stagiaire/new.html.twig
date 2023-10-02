@@ -3,7 +3,11 @@
 {% block title %} +++ stagiaire {% endblock %}
 
 {% block body %}
-    <h1>Ajouter un stagiaire</h1>
+    {% if not edit %}
+        <h1>Ajouter un stagiaire</h1>
+        {% else %}
+        <h1>Modifier un stagiaire</h1>
+    {% endif %}
     <div class="formGlobal">
     {{ form_start(formNewStagiaire) }}
         <div class="formInside">
