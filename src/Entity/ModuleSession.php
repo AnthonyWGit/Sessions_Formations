@@ -13,15 +13,19 @@ class ModuleSession
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product', 'list_product'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['show_product', 'list_product'])]
     private ?string $nom = null;
 
     #[ORM\ManyToOne(inversedBy: 'modules_session')]
+    #[Groups(['show_product', 'list_product'])]
     private ?Categorie $categorie = null;
 
     #[ORM\OneToMany(mappedBy: 'module_session', targetEntity: Programme::class, orphanRemoval: true)]
+    #[Groups(['show_product', 'list_product'])]
     private Collection $programmes;
 
     public function __construct()
