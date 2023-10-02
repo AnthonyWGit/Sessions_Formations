@@ -50,11 +50,11 @@ class StagiaireController extends AbstractController
     }
 
     #[Route('admin/stagiaire/{id}/delete', name: 'deleteStagiaire')]
-    public function formateurDelete(Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
+    public function stagiaireDelete(Stagiaire $stagiaire, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($stagiaire);
         $entityManager->flush();
-        $this->redirectToRoute('globalStagiaire');
+        return $this->redirectToRoute('globalStagiaire');
     }
 
     #[Route('profile/stagiaire/{id}', name: 'detailStagiaire')]
