@@ -1,6 +1,11 @@
+
+/* !!!!!!!!!!!!*/
+/* Pour la classe board regarder la dox flex basis pour déterminer combien il y a de cartes sur une ligne*/
+
 html
 {
     background-color: rgba(127, 255, 212, 0.10);
+    font-family: 'Chakra Petch', sans-serif;
 }
 a
 {
