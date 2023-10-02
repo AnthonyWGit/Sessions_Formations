@@ -35,7 +35,7 @@ class SessionType extends AbstractType
                     new NotBlank(), 
                     new GreaterThan([
                         'message' => 'La date de fin doit être supérieure à celle de début',
-                        'propertyPath' => 'parent.all[dateSessionDebut].data'
+                        'propertyPath' => 'parent.all[dateSessionDebut].data' //Thanks StackOverflow 
                     ])
                 ]
             ])
