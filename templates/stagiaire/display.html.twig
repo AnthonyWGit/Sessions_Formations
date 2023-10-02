@@ -14,6 +14,7 @@
                 <th>Date de démarrage</th>
                 <th>Date de fin</th>
                 <th>Places restantes</th>
+                <th>État de la session</th>
                 <th>Inscrit</th>
                 {% if is_granted("ROLE_ADMIN") %}
                 <th>Actions</th>
@@ -27,6 +28,15 @@
                 <td>{{ session.dateSessionDebutFormat }}</td>
                 <td>{{ session.dateSessionFinFormat }}</td>
                 <td>{{ session.placesRestantes }}</td>
+                {% if session.dateSessionFin < currDate %}
+                    <td>
+                        Session close
+                    </td>
+                {% else %}
+                    <td>
+                        Session ouverte
+                    </td>
+                {% endif %}                
                 <td>
                     {% if stagiaire in session.stagiaires %}
                         Inscrit
@@ -34,14 +44,23 @@
                         Non inscrit
                     {% endif %}
                 </td>
-                <td>
-                    {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}
-                        <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
+
+                {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}   
+                        {% if session.placesRestantes > 0 %}
+                            <td>
+                                <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
+                            </td>
+                        {% elseif session.placesRestantes < 1 %}
+                            <td>
+                                <p>La session est complète</p>
+                            </td>
+                        {% endif %}
                     {% endif %}
                     {% if is_granted("ROLE_ADMIN") and stagiaire in session.stagiaires %}
-                    <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                        <td>
+                            <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                        </td>
                 {% endif %}
-                </td>
             </tr>
             {% endfor %}
         </tbody>
