@@ -123,6 +123,11 @@ nav ul
     justify-content: space-evenly;
 }
 
+.tableBoard
+{
+    display: flex;
+    justify-content: center;
+}
 #filteredCards
 {
     display: flex;
