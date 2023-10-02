@@ -1,17 +1,12 @@
-$(document).ready(function ()
-{
-    function toggleDisplay()
-    {
-        //First we hide initial display
-        $(cardBoard).hide()
-        //creating the table 
-
+$(document).ready(function () {
+    function toggleDisplay() {
+        // Toggle between card view and table view
+        $(".cardBoard, .tableBoard").toggle();
     }
-    
-    $(tableBoard).hide()
-    
-    const switchbtn = document.querySelector("#switchBtn")
-    const cardBoard = document.querySelector(".cardBoard")
-    const tableBoard = document.querySelector("#tableBoard")
-    switchbtn.addEventListener("click", toggleDisplay)
-})
+    const tableBoard = document.querySelector('.tableBoard')
+    const cardBoard = document.querySelector('.cardBoard')
+    const switchbtn = document.querySelector("#switchBtn");
+    switchbtn.addEventListener("click", toggleDisplay);
+    $(".tableBoard").toggle();
+
+});

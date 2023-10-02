@@ -29,20 +29,37 @@
 
     </br>
 
-    {% set entryInfo = {
-        moduleT: modulesSession,
-    } %}
-
-    <div class="cardBoard" data-modules="{{ entryInfo|json_encode|raw}}">
+    
+    <div class="cardBoard" data-modules="{{ modulesSession|serialize('json', { groups: 'show_product:list_product'}) }}">
         {% for module in modulesSession %}
                 <div class="card">
-                    <p class="center"><b>{{ module.nom }</b>}</p>
+                    <p class="center"><b>{{ module.nom }}</b></p>
                     <p><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
                     <p>{{ module.categorie }}</p>
                 </div>
                 
         {% endfor %}
     </div>
+
+    <div class = "tableBoard">
+        <table>
+            <thead>
+                <tr>
+                    <td>Un</td>
+                    <td>Un</td>
+                    <td>Un</td>
+                </tr>
+        {% for module in modulesSession %}
+            <tr>
+                <td>{{ module.nom }}</td>
+                <td> <a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></td>
+                <td>{{ module.categorie }}</td>
+            </tr>
+        {% endfor %}
+            </thead>
+        </table>
+    </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{ asset('js/realtime.js') }}"></script>    
