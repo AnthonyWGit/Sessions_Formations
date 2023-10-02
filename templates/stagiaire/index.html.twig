@@ -3,6 +3,11 @@
 {% block title %}Hallo StagiaireController!{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+    {% endfor %}
 
     <h1>Voici les stagiaires enregistrés</h1>
     <div class="topPage">  
