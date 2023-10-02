@@ -15,6 +15,9 @@
             <a class="looksLikeAButton" href="{{ path("app_programme") }}">
                 Voir les modules programmés
             </a>
+            <button id="switchBtn">
+                Mode tableau
+            </button>
         {% endif %}
     </div>
     <div class="topPage">
@@ -26,18 +29,24 @@
 
     </br>
 
-    <div class="cardBoard">
+    {% set entryInfo = {
+        moduleT: modulesSession,
+    } %}
+
+    <div class="cardBoard" data-modules="{{ entryInfo|json_encode|raw}}">
         {% for module in modulesSession %}
                 <div class="card">
-                    <p class="center"><b>{{ module.nom }}</p></b>
+                    <p class="center"><b>{{ module.nom }</b>}</p>
                     <p><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
                     <p>{{ module.categorie }}</p>
                 </div>
+                
         {% endfor %}
     </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{ asset('js/realtime.js') }}"></script>    
+<script src="{{ asset('js/switch.js') }}"></script>    
 {% endblock %}
 
 
