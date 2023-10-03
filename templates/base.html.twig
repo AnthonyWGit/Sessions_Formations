@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
         <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
         <link rel="stylesheet" href="{{ asset('css/lookslikeButton.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dark.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
@@ -20,7 +21,6 @@
         {% block javascripts %}
         {% endblock %}
     </head>
-</head>
 <body>
     <nav>
         <ul>
@@ -41,6 +41,9 @@
             {% if is_granted('IS_AUTHENTICATED') %}
                 <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
             {% endif %}
+            <button id="toggleBtn">
+                Toggle
+            </button>
         </ul>
     </nav>
 
@@ -49,5 +52,6 @@
             
         {% endblock %}
     </main>
+
 </body>
 </html>

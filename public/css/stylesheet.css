@@ -2,9 +2,25 @@
 /* !!!!!!!!!!!!*/
 /* Pour la classe board regarder la dox flex basis pour déterminer combien il y a de cartes sur une ligne*/
 
+:root {
+    --card-p-dark:#2e006a!important;    
+    --background-color-light:  rgba(127, 255, 212, 0.10);
+    --background-color-dark: rgba(14, 47, 36, 0.958);
+    --text-color-light: rgba(0, 0, 0, 1);
+    --text-color-dark: #5100bb;
+    --label-color-dark: #6f00ff;
+    --b-color-dark: rgba(238, 238, 179, 0.7);
+    --zoom-a-dark: rgba(255, 88, 11, 0.7);
+    --nav-ul-dark: #87cfeb28;
+    --form-dark: rgba(237, 79, 255, 0.1);
+    --encard-dark: rgb(27, 27, 27);
+}
+
 html
 {
-    background-color: rgba(127, 255, 212, 0.10);
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.5s, color 0.5s;
     font-family: 'Chakra Petch', sans-serif;
 }
 a
