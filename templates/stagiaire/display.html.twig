@@ -10,14 +10,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>Titre</th>
-                    <th>Date de démarrage</th>
-                    <th>Date de fin</th>
-                    <th>Places restantes</th>
-                    <th>État de la session</th>
-                    <th>Inscrit</th>
+                    <th><b>Titre</b></th>
+                    <th><b>Date de démarrage</b></th>
+                    <th><b>Date de fin</b></th>
+                    <th><b>Places restantes</b></th>
+                    <th><b>État de la session</b></th>
+                    <th><b>Inscrit</b></th>
                     {% if is_granted("ROLE_ADMIN") %}
-                    <th>Actions</th>
+                        <th><b>Actions</b></th>
                     {% endif %}
                 </tr>
             </thead>
