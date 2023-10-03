@@ -33,9 +33,10 @@
     <div class="cardBoard" data-modules="{{ modulesSession|serialize('json', { groups: 'show_product:list_product'}) }}">
         {% for module in modulesSession %}
                 <div class="card">
-                    <p class="center"><b>{{ module.nom }}</b></p>
-                    <p><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
-                    <p>{{ module.categorie }}</p>
+                    <p class="center zero"><b>{{ module.nom }}</b></p>
+                    <p class="center zero">{{ module.categorie }}</p>                    
+                    <p class="center zero"><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
+                    <p class="center zero"><a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Editer</a></p>
                 </div>
                 
         {% endfor %}
@@ -45,15 +46,16 @@
         <table>
             <thead>
                 <tr>
-                    <td>Un</td>
-                    <td>Un</td>
-                    <td>Un</td>
+                    <td>Nom</td>
+                    <td>Categorie</td>
+                    <td colspan="2">Action</td>
                 </tr>
         {% for module in modulesSession %}
             <tr>
                 <td>{{ module.nom }}</td>
-                <td> <a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></td>
                 <td>{{ module.categorie }}</td>
+                <td> <a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></td>
+                <td> <a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Editer</a></td>
             </tr>
         {% endfor %}
             </thead>
