@@ -7,7 +7,7 @@
     --background-color-light:  rgba(127, 255, 212, 0.10);
     --background-color-dark: rgba(14, 47, 36, 0.958);
     --text-color-light: rgba(0, 0, 0, 1);
-    --text-color-dark: rgb(155, 155, 155);
+    --text-color-dark: rgb(204, 204, 204);
     --label-color-dark: rgb(156, 156, 156);
     --b-color-dark: rgba(238, 238, 179, 0.7);
     --zoom-a-dark: rgba(255, 88, 11, 0.7);
@@ -120,6 +120,13 @@ nav ul
 }
 
 .card img
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+}
+
+.cardBig img
 {
     width: 50px;
     height: 50px;
@@ -247,7 +254,14 @@ table
     text-align: center;
     border-collapse: collapse;
 }
-
+.table-wrapper
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* max-width: 500px; */
+    overflow-x: auto;
+}
 th, td
 {
     border: solid 1px black;
@@ -269,6 +283,7 @@ backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 padding: 0.5rem;
+font-weight: 700;
 }
 
 button:hover
