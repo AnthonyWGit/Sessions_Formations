@@ -104,20 +104,22 @@ class SessionController extends AbstractController
 
 
     #[Route('profile/session/{id}', name: 'detailSession')]
-    public function sessionDetail(Session $session, SessionRepository $sessionRepo): Response
+    public function sessionDetail(Session $session, SessionRepository $sessionRepo, StagiaireRepository $stagiaireRepository): Response
     {
         $totalNbJours = 0;
         foreach ($session->getProgrammes() as $prog)
         {
             $totalNbJours = $totalNbJours + $prog->getNbJours();
         }
+        $allStagiaires = $stagiaireRepository->findBy([], ["nom" => "ASC"]);
         $stagiairesNonInscrits = $sessionRepo->findNonInscrits($session->getId());
         $modulesnonconcernes = $sessionRepo->findModulesNonConcernes($session->getId());
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'stagiairesNonInscrits' => $stagiairesNonInscrits,
             'modulesnonconcernes' => $modulesnonconcernes,
-            'totalNbJours' => $totalNbJours
+            'totalNbJours' => $totalNbJours,
+            'allStagiaires' => $allStagiaires
         ]);
     }
 
