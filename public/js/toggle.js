@@ -4,6 +4,7 @@ const html = document.documentElement;
 const b = document.querySelectorAll("b");
 const cardP = document.querySelectorAll(".card p");
 const zoomA = document.querySelectorAll(".zoom a");
+const button = document.querySelectorAll("button");
 // Function to toggle dark mode
 function toggleDarkMode() {
     html.classList.toggle('dark-mode');
@@ -16,7 +17,9 @@ function toggleDarkMode() {
     zoomA.forEach(link => {
         link.classList.toggle('dark-mode');
     });
-
+    button.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
 }
 
 // Check for user's preferred mode (light or dark) in local storage

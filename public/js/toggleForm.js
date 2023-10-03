@@ -5,6 +5,7 @@ const b = document.querySelectorAll("b");
 const cardP = document.querySelectorAll(".card p");
 const zoomA = document.querySelectorAll(".zoom a");
 const formInside = document.querySelector(".formInside");
+const button = document.querySelectorAll("button");
 const formRowLabel = document.querySelectorAll(".formRow label");
 // Function to toggle dark mode
 function toggleDarkMode() {
@@ -20,6 +21,9 @@ function toggleDarkMode() {
         link.classList.toggle('dark-mode');
     });
     formRowLabel.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    button.forEach(link => {
         link.classList.toggle('dark-mode');
     });
 }

@@ -2,6 +2,7 @@
 const darkModeToggle = document.querySelector('#toggleBtn');
 const html = document.documentElement;
 const b = document.querySelectorAll("b");
+const button = document.querySelectorAll("button");
 const cardP = document.querySelectorAll(".card p");
 const zoomA = document.querySelectorAll(".zoom a");
 const encard = document.querySelector(".encard");
@@ -52,6 +53,9 @@ function toggleDarkMode() {
         link.classList.toggle('dark-mode');
     });
     tdBold.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    button.forEach(link => {
         link.classList.toggle('dark-mode');
     });
 }
