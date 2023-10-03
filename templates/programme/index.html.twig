@@ -17,6 +17,7 @@
     <div class="card">
         <p class="center">{{ programme }}</p>
         <a class="looksLikeAButton" href="{{ path("deleteProgramme" , {'id' : programme.id }) }}"> Déprogrammer
+        <a class="looksLikeAButtonGreen" href="{{ path("editProgramme" , {'id' : programme.id }) }}"> Éditer
         </a>
     </div>
     {% endfor %}

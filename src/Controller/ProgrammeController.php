@@ -47,7 +47,7 @@ class ProgrammeController extends AbstractController
                 return $this->redirectToRoute('globalModuleSession'); //redirect to list stagiaires if everything is ok
             }
         
-        return $this->render("programme/new.html.twig", ['formNewProgramme' => $form]);
+        return $this->render("programme/new.html.twig", ['formNewProgramme' => $form, 'edit' => $programme->getId()]);
     }
 
     #[Route('admin/programme/{id}/delete', name: 'deleteProgramme')]

@@ -24,7 +24,7 @@
             </div>
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="looksLikeAButtonGrey">
-                    <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Editer</a>
+                    <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Éditer</a>
                 </div>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}

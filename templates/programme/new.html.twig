@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Programmer un module {% endblock %}
+{% block title %}
+    {% if not edit %}
+        Programmer un module programmé
+    {% else %}
+        Éditer un module programmée
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Programmez le module</h1>
+    {% if not edit %}
+        <h1>Programmez le module</h1>
+    {% else %}
+        <h1>Editer le module programmé</h1>
+    {% endif %}
     <div class="formGlobal">
         <div class="formInside">
         {{ form_start(formNewProgramme) }}
