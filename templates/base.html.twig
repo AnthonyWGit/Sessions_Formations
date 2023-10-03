@@ -22,30 +22,32 @@
         {% endblock %}
     </head>
 <body>
-    <nav>
-        <ul>
-            <li class="zoom"><a href="{{path('globalStagiaire')}}">Stagiaire liste</a></li>
-            <li class="zoom"><a href="{{path('globalSession')}}">Sessions liste</a></li>
-            <li class="zoom"><a href="{{path('globalCategorie')}}">Catégories liste</a></li>
-            <li class="zoom"><a href="{{path('globalFormateur')}}">Formateurs liste</a></li>
-            <li class="zoom"><a href="{{path('globalModuleSession')}}">Modules liste</a></li>
-            {% if not is_granted('IS_AUTHENTICATED') %}
-                <li class="zoom"><a href="{{path('app_login')}}">Se connecter</a></li>
-            {% endif %}
-            {% if is_granted('IS_AUTHENTICATED') %}
-                <li class="zoom"><a href="{{path('app_logout')}}">Se déconnecter</a></li>
-            {% endif %}
-            {% if not is_granted('IS_AUTHENTICATED') %}
-                <li class="zoom"><a href="{{path('app_register')}}">S'enregistrer</a></li>
-            {% endif %}
-            {% if is_granted('IS_AUTHENTICATED') %}
-                <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
-            {% endif %}
-            <button id="toggleBtn">
-                Toggle
-            </button>
-        </ul>
-    </nav>
+    {% if is_granted('IS_AUTHENTICATED') %}
+        <nav>
+            <ul>
+                <li class="zoom"><a href="{{path('globalStagiaire')}}">Stagiaire liste</a></li>
+                <li class="zoom"><a href="{{path('globalSession')}}">Sessions liste</a></li>
+                <li class="zoom"><a href="{{path('globalCategorie')}}">Catégories liste</a></li>
+                <li class="zoom"><a href="{{path('globalFormateur')}}">Formateurs liste</a></li>
+                <li class="zoom"><a href="{{path('globalModuleSession')}}">Modules liste</a></li>
+                {% if not is_granted('IS_AUTHENTICATED') %}
+                    <li class="zoom"><a href="{{path('app_login')}}">Se connecter</a></li>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED') %}
+                    <li class="zoom"><a href="{{path('app_logout')}}">Se déconnecter</a></li>
+                {% endif %}
+                {% if not is_granted('IS_AUTHENTICATED') %}
+                    <li class="zoom"><a href="{{path('app_register')}}">S'enregistrer</a></li>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED') %}
+                    <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
+                {% endif %}
+                <button id="toggleBtn">
+                    Toggle
+                </button>
+            </ul>
+        </nav>
+    {% endif %}
 
     <main class="container">
         {% block body %}
