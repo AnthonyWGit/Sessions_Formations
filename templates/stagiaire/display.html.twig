@@ -7,63 +7,65 @@
     <h1>Détail de {{ stagiaire }} </h1>
     <p><b>Email</b> : <i>{{ stagiaire.email }}</i> </p>
     <p><b>Age</b> : <i>{{ stagiaire.age }}</i></p>
-    <table>
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Date de démarrage</th>
-                <th>Date de fin</th>
-                <th>Places restantes</th>
-                <th>État de la session</th>
-                <th>Inscrit</th>
-                {% if is_granted("ROLE_ADMIN") %}
-                <th>Actions</th>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in sessions %}
-            <tr>
-                <td>{{ session.titre }}</td>
-                <td>{{ session.dateSessionDebutFormat }}</td>
-                <td>{{ session.dateSessionFinFormat }}</td>
-                <td>{{ session.placesRestantes }}</td>
-                {% if session.dateSessionFin < currDate %}
-                    <td>
-                        Session close
-                    </td>
-                {% else %}
-                    <td>
-                        Session ouverte
-                    </td>
-                {% endif %}                
-                <td>
-                    {% if stagiaire in session.stagiaires %}
-                        Inscrit
-                    {% else %}
-                        Non inscrit
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date de démarrage</th>
+                    <th>Date de fin</th>
+                    <th>Places restantes</th>
+                    <th>État de la session</th>
+                    <th>Inscrit</th>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <th>Actions</th>
                     {% endif %}
-                </td>
-
-                {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}   
-                        {% if session.placesRestantes > 0 %}
-                            <td>
-                                <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
-                            </td>
-                        {% elseif session.placesRestantes < 1 %}
-                            <td>
-                                <p>La session est complète</p>
-                            </td>
-                        {% endif %}
-                    {% endif %}
-                    {% if is_granted("ROLE_ADMIN") and stagiaire in session.stagiaires %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                <tr>
+                    <td>{{ session.titre }}</td>
+                    <td>{{ session.dateSessionDebutFormat }}</td>
+                    <td>{{ session.dateSessionFinFormat }}</td>
+                    <td>{{ session.placesRestantes }}</td>
+                    {% if session.dateSessionFin < currDate %}
                         <td>
-                            <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                            Session close
                         </td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    {% else %}
+                        <td>
+                            Session ouverte
+                        </td>
+                    {% endif %}                
+                    <td>
+                        {% if stagiaire in session.stagiaires %}
+                            Inscrit
+                        {% else %}
+                            Non inscrit
+                        {% endif %}
+                    </td>
+
+                    {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}   
+                            {% if session.placesRestantes > 0 %}
+                                <td>
+                                    <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
+                                </td>
+                            {% elseif session.placesRestantes < 1 %}
+                                <td>
+                                    <p>La session est complète</p>
+                                </td>
+                            {% endif %}
+                        {% endif %}
+                        {% if is_granted("ROLE_ADMIN") and stagiaire in session.stagiaires %}
+                            <td>
+                                <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                            </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 <script src="{{ asset('js/toggleEncardBis.js') }}"></script>    
 {% endblock %}
