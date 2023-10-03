@@ -15,7 +15,7 @@
 <div class="cardBoard">
     {% for programme in programmes %}
     <div class="card">
-        {{ programme }}
+        <p class="center">{{ programme }}</p>
         <a class="looksLikeAButton" href="{{ path("deleteProgramme" , {'id' : programme.id }) }}"> Déprogrammer
         </a>
     </div>
