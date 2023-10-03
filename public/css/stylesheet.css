@@ -7,8 +7,8 @@
     --background-color-light:  rgba(127, 255, 212, 0.10);
     --background-color-dark: rgba(14, 47, 36, 0.958);
     --text-color-light: rgba(0, 0, 0, 1);
-    --text-color-dark: #5100bb;
-    --label-color-dark: #6f00ff;
+    --text-color-dark: rgb(155, 155, 155);
+    --label-color-dark: rgb(156, 156, 156);
     --b-color-dark: rgba(238, 238, 179, 0.7);
     --zoom-a-dark: rgba(255, 88, 11, 0.7);
     --nav-ul-dark: #87cfeb28;

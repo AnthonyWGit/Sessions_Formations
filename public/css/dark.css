@@ -1,0 +1,45 @@
+html.dark-mode 
+{
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+b.dark-mode
+{
+    color: var(--b-color-dark);
+}
+
+.card p.dark-mode
+{
+    color: var(--card-p-dark);
+}
+
+.zoom a.dark-mode
+{
+    color: var(--zoom-a-dark);
+}
+
+nav ul
+{
+    background-color: var(--nav-ul-dark);
+}
+
+.formInside.dark-mode
+{
+    background-color: var(--form-dark);
+}
+
+.encard.dark-mode
+{
+    background-color: var(--encard-dark);
+}
+
+td a.dark-mode
+{
+    color: var(--text-color-dark);
+}
+
+.formRow label.dark-mode
+{
+    color: var(--label-color-dark);
+}
