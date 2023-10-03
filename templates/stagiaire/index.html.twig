@@ -18,7 +18,7 @@
 
     <div class="cardBoard">
         {% for stagiaire in stagiaires %}
-            <div class="card">
+            <div class="cardBig">
 
                     <p class="titreCard"> {{ stagiaire.nom }} </p>
                     <div class="imgCard">
@@ -27,10 +27,10 @@
                     <p class="detail">Voir les détails du stagiaire : <a class="blue" href=" {{path("detailStagiaire", {'id' : stagiaire.id}) }}"><b>Ici</b> </a></p>
                     {% if is_granted('ROLE_ADMIN') %} 
                         <p class="detail">
-                            <a href=" {{path("deleteStagiaire", {'id' : stagiaire.id}) }}">Supprimer </a>
+                            <a class="looksLikeAButtonScarlet" href=" {{path("deleteStagiaire", {'id' : stagiaire.id}) }}">Supprimer </a>
                         </p>
                         <p class="detail">
-                            <a href=" {{path("editStagiaire", {'id' : stagiaire.id}) }}">Editer </a>
+                            <a class="looksLikeAButtonGreen" href=" {{path("editStagiaire", {'id' : stagiaire.id}) }}">Editer </a>
                         </p>
                     {% endif %}
             </div>
