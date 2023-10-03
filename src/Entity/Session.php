@@ -40,6 +40,9 @@ class Session
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, orphanRemoval:true)]
     private Collection $programmes;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $coordonnees = null;
+
     public function __construct()
     {
         $this->stagiaires = new ArrayCollection();
@@ -211,5 +214,17 @@ class Session
     public function __toString()
     {
         return $this->titre;
+    }
+
+    public function getCoordonnees(): ?string
+    {
+        return $this->coordonnees;
+    }
+
+    public function setCoordonnees(?string $coordonnees): static
+    {
+        $this->coordonnees = $coordonnees;
+
+        return $this;
     }
 }

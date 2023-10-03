@@ -48,8 +48,10 @@ class SessionType extends AbstractType
             ])
             ->add('formateur', EntityType::class , [
                 'class' => Formateur::class,
-
             ])
+
+            ->add('coordonnees', TextType::class, ['attr' => ['class' => 'coordinates']])
+
             ->add('valider', SubmitType::class)
         ;
     }

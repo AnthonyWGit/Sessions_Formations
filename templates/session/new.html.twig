@@ -43,6 +43,12 @@
                 {{ form_help(formNewSession.formateur)}}
                 {{ form_errors(formNewSession.formateur)}}
             </div>
+            <div class="formRow">
+                {{ form_label(formNewSession.coordonnees)}}
+                {{ form_widget(formNewSession.coordonnees)}}
+                {{ form_help(formNewSession.coordonnees)}}
+                {{ form_errors(formNewSession.coordonnees)}}
+            </div>
             {{form_row(formNewSession.valider)}}
         </div>
     {{ form_end(formNewSession) }}
