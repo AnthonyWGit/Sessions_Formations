@@ -7,9 +7,9 @@
 <div class="encard">
     <h1>Caractérisque de la seesion : {{ session.titre }} </h1>
     <p><a class="looksLikeAButton" href=" {{ path("editSession", {"id" : session.id }) }}">Modifier les détails de la session</a></p>        
-    <p class="zero"><b>Nom du référant formateur</b> : {{ session.formateur.nom }} {{ session.formateur.prenom }} </p>
-    <p class="zero"><b>Contenu de la formation</b> : {{ session.formation.intitule }} </p>
-    <p class="zero"><b>Modules concernées</b> : 
+    <p class="zero center"><b>Nom du référant formateur</b> : {{ session.formateur.nom }} {{ session.formateur.prenom }} </p>
+    <p class="zero center"><b>Contenu de la formation</b> : {{ session.formation.intitule }} </p>
+    <p class="zero center"><b>Modules concernées</b> : 
         {% if session.programmes is empty %}
             aucun module n'a été trouvé.
         {% else %}
@@ -20,21 +20,21 @@
             {% endfor %}
         {% endif %}
     </p>
-    <p class="zero"><b>La session démarre le</b> : <span class="red" >{{ session.dateSessionDebutFormat }}</span></p>
-    <p class="zero"><b>La session se termine le</b> : <span class="red" >{{ session.dateSessionFinFormat }}</span></p>
+    <p class="zero center"><b>La session démarre le</b> : <span class="red" >{{ session.dateSessionDebutFormat }}</span></p>
+    <p class="zero center"><b>La session se termine le</b> : <span class="red" >{{ session.dateSessionFinFormat }}</span></p>
 
     {% set  currentDate = "now"|date("Y-m-d") %}
     {% if currentDate > session.dateSessionFinFormat %} {# below cases to display when a session is open or closed #}
-        <p class="zero">Cette session est <b>terminée.</b></p>
+        <p class="zero center">Cette session est <b>terminée.</b></p>
     {% elseif currentDate < session.dateSessionFinFormat  %}
-        <p class="zero">Cette session est <b>ouverte.</b></p>
+        <p class="zero center">Cette session est <b>ouverte.</b></p>
     {% else %}
-        <p class="zero">Cette session est <b>terminée.</b></p>
+        <p class="zero center">Cette session est <b>terminée.</b></p>
     {% endif %}
 
     <div class="topPage2">
         <div class="colTop">
-        <p>Modules inclus dans cette session de formation</p>
+        <p class="center">Modules inclus dans cette session de formation</p>
 
         <ul class="modules">
             {% for programme in session.programmes %}
@@ -49,7 +49,7 @@
         </div>
 
         <div class="colTop">
-        <p class="zero">Ajouter un module dans la session ? </p>
+        <p class="zero center">Ajouter un module dans la session ? </p>
         <ul>
             {% for module in modulesnonconcernes %}
                 <li>
@@ -64,43 +64,45 @@
         </div>
     </div>
 
-        <p class="zero">Voici les stagiaires qui se sont inscrits à la session</p>
-        <table>
-            <thead>
-                <tr>
-                    <td class="boldItalicBasic">Stagiaire</td>
-                    <td class="boldItalicBasic">Etat</td>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <td class="boldItalicBasic">Actions</td>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-                {% if allStagiaires is empty %}
-                    <p>Il n'y a aucun stagiaire</p>
-                {% endif %}
-                {% for stagiaire in allStagiaires %}
-                    {% if stagiaire is empty %}
-                        <p>Il n'y a aucun stagiaire</p>
-                    {% endif %}
+        <p class="zero center">Voici les stagiaires qui se sont inscrits à la session</p>
+
+            <table>
+                <thead>
                     <tr>
-                        <td><span class="boldNoColorChange">{{stagiaire}}</span></td>
-                        {% if session in stagiaire.sessions %}
-                            <td><b>Inscrit</b></td>
-                        {% else %}
-                            <td><b>Non inscrit</b></td>
-                        {% endif %}
+                        <td class="boldItalicBasic">Stagiaire</td>
+                        <td class="boldItalicBasic">Etat</td>
                         {% if is_granted("ROLE_ADMIN") %}
-                            {% if session in stagiaire.sessions %}
-                                <td><a class="looksLikeAButtonScarlet" href=" {{ path('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">Désinscrire</a></td>
-                            {% else %}
-                                <td><a class="looksLikeAButtonGreen" href=" {{ path('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">Inscrire</a></td>
-                            {% endif %}
+                            <td class="boldItalicBasic">Actions</td>
                         {% endif %}
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% if allStagiaires is empty %}
+                        <p>Il n'y a aucun stagiaire</p>
+                    {% endif %}
+                    {% for stagiaire in allStagiaires %}
+                        {% if stagiaire is empty %}
+                            <p>Il n'y a aucun stagiaire</p>
+                        {% endif %}
+                        <tr>
+                            <td><span class="boldNoColorChange">{{stagiaire}}</span></td>
+                            {% if session in stagiaire.sessions %}
+                                <td><b>Inscrit</b></td>
+                            {% else %}
+                                <td><b>Non inscrit</b></td>
+                            {% endif %}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                {% if session in stagiaire.sessions %}
+                                    <td><a class="looksLikeAButtonScarlet" href=" {{ path('removeStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">Désinscrire</a></td>
+                                {% else %}
+                                    <td><a class="looksLikeAButtonGreen" href=" {{ path('addStagiaire', {'id' : stagiaire.id , 'session' : session.id }) }}">Inscrire</a></td>
+                                {% endif %}
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         {# <ul>
             {% for stagiaire in session.stagiaires %}
                 <li> <a href=" {{ path("detailStagiaire" , {'id' : stagiaire.id }) }}">{{stagiaire}}</a></li>
