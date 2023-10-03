@@ -10,7 +10,7 @@ a
 .encard
 {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     border: inset 2px;
     background-color: khaki;
@@ -23,7 +23,7 @@ a
 .encardC
 {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     border: inset 2px;
     background-color: khaki;
