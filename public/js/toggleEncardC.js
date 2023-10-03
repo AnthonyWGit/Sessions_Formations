@@ -4,12 +4,11 @@ const html = document.documentElement;
 const b = document.querySelectorAll("b");
 const cardP = document.querySelectorAll(".card p");
 const zoomA = document.querySelectorAll(".zoom a");
-const encard = document.querySelector(".encard");
-const tda = document.querySelectorAll("td a");
+const encardC = document.querySelector(".encardC");
 // Function to toggle dark mode
 function toggleDarkMode() {
     html.classList.toggle('dark-mode');
-    encard.classList.toggle('dark-mode');
+    encardC.classList.toggle('dark-mode');
     b.forEach(link => {
         link.classList.toggle('dark-mode');
     });
@@ -19,12 +18,7 @@ function toggleDarkMode() {
     zoomA.forEach(link => {
         link.classList.toggle('dark-mode');
     });
-    tda.forEach(link => {
-        link.classList.toggle('dark-mode');
-    });
-    llabs.forEach(link => {
-        link.classList.toggle('dark-mode');
-    });
+
 }
 
 // Check for user's preferred mode (light or dark) in local storage

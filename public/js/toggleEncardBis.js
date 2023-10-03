@@ -6,6 +6,14 @@ const cardP = document.querySelectorAll(".card p");
 const zoomA = document.querySelectorAll(".zoom a");
 const encard = document.querySelector(".encard");
 const tda = document.querySelectorAll("td a");
+const llabs = document.querySelectorAll(".encard .looksLikeAButtonScarlet");
+const table = document.querySelectorAll("table");
+const tr = document.querySelectorAll("tr");
+const th = document.querySelectorAll("th");
+const td = document.querySelectorAll("td");
+const thead = document.querySelectorAll("thead");
+const boldItalic = document.querySelectorAll(".boldItalicBasic");
+const tdBold = document.querySelectorAll("td.boldItalicBasic");
 // Function to toggle dark mode
 function toggleDarkMode() {
     html.classList.toggle('dark-mode');
@@ -23,6 +31,27 @@ function toggleDarkMode() {
         link.classList.toggle('dark-mode');
     });
     llabs.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    table.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    boldItalic.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    tr.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    th.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    td.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    thead.forEach(link => {
+        link.classList.toggle('dark-mode');
+    });
+    tdBold.forEach(link => {
         link.classList.toggle('dark-mode');
     });
 }

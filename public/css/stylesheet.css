@@ -198,6 +198,24 @@ nav ul
     padding: 1rem;
 }
 
+.topPage2
+{
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.colTop
+{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    align-items: center;
+}
+
 .topPageSpace
 {
     display: flex;
@@ -234,4 +252,9 @@ th, td
 {
     border: solid 1px black;
     padding: 0.5rem;
+}
+
+.boldNoColorChange
+{
+    font-weight: 700;
 }

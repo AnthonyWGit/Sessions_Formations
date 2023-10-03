@@ -34,6 +34,11 @@ nav ul
     background-color: var(--encard-dark);
 }
 
+.encardC.dark-mode
+{
+    background-color: var(--encard-dark);
+}
+
 td a.dark-mode
 {
     color: var(--text-color-dark);
@@ -42,4 +47,24 @@ td a.dark-mode
 .formRow label.dark-mode
 {
     color: var(--label-color-dark);
+}
+
+.encard .looksLikeAButtonScarlet.dark-mode
+{
+    color: var(--text-color-light);
+    font-weight: 700;
+}
+
+table.dark-mode , td.dark-mode, tr.dark-mode, th.dark-mode , thead.dark-mode,  .boldItalicBasic.dark-mode
+{
+    border: solid 2px rgb(31, 3, 3);
+}
+
+table.dark-mode
+{
+    border-radius: 10px;
+}
+.boldItalicBasic.dark-mode
+{
+    font-weight: 700;
 }
