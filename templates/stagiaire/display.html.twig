@@ -7,7 +7,6 @@
     <h1>Détail de {{ stagiaire }} </h1>
     <p><b>Email</b> : <i>{{ stagiaire.email }}</i> </p>
     <p><b>Age</b> : <i>{{ stagiaire.age }}</i></p>
-    <div class="table-wrapper">
         <table>
             <thead>
                 <tr>
@@ -66,6 +65,5 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
 <script src="{{ asset('js/toggleEncardBis.js') }}"></script>    
 {% endblock %}
