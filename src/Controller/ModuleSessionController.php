@@ -86,7 +86,7 @@ class ModuleSessionController extends AbstractController
                 return $this->redirectToRoute('globalModuleSession'); //redirect to list stagiaires if everything is ok
             }
         
-        return $this->render("module_session/new.html.twig", ['formNewModuleSession' => $form]);
+        return $this->render("module_session/new.html.twig", ['formNewModuleSession' => $form, 'edit' => $modulesession->getId()]);
     }
 
     #[Route('admin/modulesession/{id}/delete', name: 'deleteModuleSession')]

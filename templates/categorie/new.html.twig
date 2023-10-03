@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} +++ catégorie {% endblock %}
+{% block title %} 
+    {% if not edit %} 
+        Ajouter catégorie
+    {% else %} 
+        Editer une catégorie
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une catégorie</h1>
+    {% if not edit %}
+        <h1>Ajouter une catégorie</h1>
+    {% else %}
+        <h1>Editer une catégorie</h1>
+    {% endif %}
     <div class="formGlobal">
         {{ form_start(formNewCategorie) }}
         <div class="formInside">

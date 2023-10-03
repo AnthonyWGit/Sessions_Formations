@@ -47,7 +47,7 @@ class FormateurController extends AbstractController
                 return $this->redirectToRoute('globalFormateur'); //redirect to list stagiaires if everything is ok
             }
         
-        return $this->render("formateur/new.html.twig", ['formNewFormateur' => $form]);
+        return $this->render("formateur/new.html.twig", ['formNewFormateur' => $form, 'edit' => $formateur->getId()]);
     }
 
     #[Route('admin/formateur/{id}/delete', name: 'deleteFormateur')]
@@ -62,7 +62,7 @@ class FormateurController extends AbstractController
     public function formateurDetail(Formateur $formateur): Response
     {
         return $this->render('formateur/detail.html.twig', [
-            'formateur' => $formateur,
+            'formateur' => $formateur, 
         ]);
     }
 }

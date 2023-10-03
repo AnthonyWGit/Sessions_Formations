@@ -50,7 +50,7 @@ class CategorieController extends AbstractController
                 return $this->redirectToRoute('globalCategorie'); //redirect to list stagiaires if everything is ok
             }
         
-        return $this->render("categorie/new.html.twig", ['formNewCategorie' => $form]);
+        return $this->render("categorie/new.html.twig", ['formNewCategorie' => $form, 'edit'=> $categorie->getId()]);
     }
    
     #[Route('admin/categorie/{id}/delete', name: 'deleteCategorie')]

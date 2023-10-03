@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} +++ module {% endblock %}
+{% block title %} 
+    {% if not edit %}
+        Ajouter un module 
+    {% else %}
+        Editer un module 
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau module </h1>
+    {% if not edit %}
+        <h1>Créer un nouveau module </h1>
+    {% else %}
+        <h1>Edition du module </h1>
+    {% endif %}
     <div class="formGlobal">
         <div class="formInside">
         {{ form_start(formNewModuleSession) }}
