@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\CredentialsFormType;
+use App\Form\deleteFormateurFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -17,6 +21,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
+
             return $this->redirectToRoute('globalSession');
         }
 
@@ -24,7 +29,6 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
@@ -56,6 +60,36 @@ class SecurityController extends AbstractController
 
         ]);
 
+    }
+
+    #[Route(path: 'admin/deleteFormateurProfile', name: 'deleteProfileFormateur')]
+    public function deleteFormateur(Request $request, EntityManagerInterface $entityManager) : Response
+    { 
+        $username = $this->getUser()->getUsername();    
+        $form = $this->createForm(deleteFormateurFormType::class, null, ['ok' => $username]); //$username will be passed in the options array 
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Retrieve the selected users from the form
+            $selectedUsers = $form->get('username')->getData();
+
+            foreach ($selectedUsers as $user)
+            {
+                $entityManager->remove($user);
+            }
+            $entityManager->flush();
+    
+            $this->addFlash(
+                'success',
+                "Les utilisateurs ont été supprimés."
+            );
+    
+            return $this->redirectToRoute('app_profile');
+        }
+    
+        return $this->render('security/deleteFormateur.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     #[Route(path: 'profile/view', name: 'app_profile')]
