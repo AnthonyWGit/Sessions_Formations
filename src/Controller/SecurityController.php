@@ -65,7 +65,7 @@ class SecurityController extends AbstractController
     #[Route(path: 'admin/deleteFormateurProfile', name: 'deleteProfileFormateur')]
     public function deleteFormateur(Request $request, EntityManagerInterface $entityManager) : Response
     { 
-        $username = $this->getUser()->getUsername();    
+        $username = $this->getUser()->getUsername();
         $form = $this->createForm(deleteFormateurFormType::class, null, ['ok' => $username]); //$username will be passed in the options array 
         $form->handleRequest($request);
     
@@ -75,7 +75,15 @@ class SecurityController extends AbstractController
 
             foreach ($selectedUsers as $user)
             {
-                $entityManager->remove($user);
+                if ($user == $this->getUser())
+                {   
+                    return $this->redirectToRoute('app_error_page', ['code' => '403']);
+                }
+                else
+                {
+                    // $entityManager->remove($user);     
+                    return $this->redirectToRoute('app_error_page', ['code' => '403']);               
+                }
             }
             $entityManager->flush();
     
