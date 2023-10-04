@@ -19,11 +19,11 @@
         <div class="card">
             <div class="titreCard">
                 <p>
-                    <a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a>                    
+                    <b><a href = " {{ path('detailFormateur', {'id' : formateur.id}) }}" >{{ formateur }} </a></b>                    
                 </p>
             </div>
             <div class="imgCard">
-                <img src=" {{asset('img/iconT.png')}}" alt="profile">
+                <img alt="image de profil" src=" {{asset('img/iconT.png')}}" alt="profile">
             </div>
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="looksLikeAButtonGrey">
