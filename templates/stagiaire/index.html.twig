@@ -26,7 +26,7 @@
 
                     <p class="titreCard"> {{ stagiaire.nom }} </p>
                     <div class="imgCard">
-                        <img src=" {{asset('img/iconT.png')}}" alt="profile">
+                        <img alt="image de profil" src=" {{asset('img/iconT.png')}}" alt="profile">
                     </div>
                     <p class="detail">Voir les détails du stagiaire : <a class="blue" href=" {{path("detailStagiaire", {'id' : stagiaire.id}) }}"><b>Ici</b> </a></p>
                     {% if is_granted('ROLE_ADMIN') %} 
