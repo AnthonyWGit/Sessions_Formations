@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block meta %}
+<meta name="description" content="Supprimer un id user">
+{% endblock %}
+
+{% block title %}Editer user{% endblock %}
+
+
+{% block body %}
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+
+<h1>Supprimer un utilisateur</h1>
+<div class="formGlobal">
+    <div class="formInside">
+    {{ form_errors(form) }}
+
+    {{ form_start(form) }}
+        <div class="formRow">
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username) }}
+            {{ form_help(form.username) }}
+            {{ form_errors(form.username) }}
+        </div>
+
+
+    {{ form_end(form) }}
+    </div>
+</div>
+<script src="{{ asset('js/toggleForm.js') }}"></script>    
+{% endblock %}
