@@ -34,12 +34,24 @@ nav
     flex-direction: row;
     justify-content: space-between;
     flex-grow: 1;
+    background-color: #87cfeb7a;
+    border-radius: 10px;
+    align-items: center;
 }
 .zero
 {
     margin: 0;
     padding: 0;
 }
+
+.navButton
+{
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+}
+
 nav ul
 {
     display: flex;
@@ -48,9 +60,7 @@ nav ul
     flex-grow: 1;
     list-style-type: none;
     flex-wrap: wrap;
-    background-color: #87cfeb7a;
     padding: 1rem 0 1rem 0;
-    border-radius: 10px;
 }
 .zoom a
 {
@@ -235,6 +245,14 @@ nav ul
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
+}
+
+.boardGap
+{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .detail

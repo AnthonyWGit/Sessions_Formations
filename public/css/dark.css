@@ -19,7 +19,7 @@ b.dark-mode
     color: var(--zoom-a-dark);
 }
 
-nav ul
+nav 
 {
     background-color: var(--nav-ul-dark);
 }
@@ -39,10 +39,10 @@ nav ul
     background-color: var(--encard-dark);
 }
 
-td a.dark-mode
+/* td a.dark-mode
 {
     color: var(--text-color-dark);
-}
+} */
 
 .formRow label.dark-mode
 {
