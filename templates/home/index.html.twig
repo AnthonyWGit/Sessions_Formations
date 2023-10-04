@@ -4,9 +4,21 @@
 
 {% block body %}
 
-    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="topPage">
+        <div class="colTop">
+    {% if not is_granted('IS_AUTHENTICATED') %}
     <p><a href="{{path('app_login')}}">Se connecter</a></p>
     {% endif %}
-    <p>L'accès à l'intranet est réservé au personnel authentifié</p>
+        </div>
+    <div class="colTop">
+        <p>L'accès à l'intranet est réservé au personnel authentifié</p>
+    </div>
 
+    <div class="colTop">
+        <button id="toggleBtn">
+            Toggle
+        </button>
+    </div>
+    </div>
+<script src="{{ asset('js/toggleHome.js') }}"></script>    
 {% endblock %}
