@@ -92,6 +92,23 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    #[Route(path: 'profile/self/{id}/deleteFormateurProfile', name: 'deleteProfileFormateurSelf')]
+    public function deleteFormateurSelf(Request $request, User $user, EntityManagerInterface $entityManager) : Response
+    { 
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            "Votre profil a été supprimé."
+        );
+
+        $request->getSession()->invalidate(); //avoiding You cannot refresh a user from the EntityUserProvider that does not contain an identifier. The user object has to be serialized with its own identifier mapped by Doctrine.
+        $this->container->get('security.token_storage')->setToken(null);
+        return $this->redirectToRoute('app_logout');
+    }
+
+
     #[Route(path: 'profile/view', name: 'app_profile')]
     public function profile()
     { 
