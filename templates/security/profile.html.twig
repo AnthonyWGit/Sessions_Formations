@@ -13,7 +13,10 @@
     </div>
     {% if is_granted("ROLE_ADMIN") %}
     <div class="topPage">
-        <a class="looksLikeAButtonScarlet" href=" {{path( "app_register") }}">Créer un profil pour un formateur</a>
+        <a class="looksLikeAButton" href=" {{path( "app_register") }}">Créer un profil pour un formateur</a>
+    </div>
+    <div class="topPage">
+        <a class="looksLikeAButtonScarlet" href=" {{path( "deleteProfileFormateur") }}">Supprimer un profil formateur</a>
     </div>
     {% endif %}
 
