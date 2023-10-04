@@ -20,6 +20,13 @@
     </div>
     {% endif %}
 
+    {% if is_granted("ROLE_FORMATEUR") %}
+    <div class="topPage">
+        <a class="looksLikeAButtonScarlet" href=" {{path( "deleteProfileFormateurSelf" , {'id' : app.user.id }) }}">Supprimer votre profil</a>
+    </div>
+    {% endif %}
+ 
+
     </div>
 </div>
 <script src="{{ asset('js/toggleEncardC.js') }}"></script>    
