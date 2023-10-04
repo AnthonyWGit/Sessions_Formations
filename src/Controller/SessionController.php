@@ -28,8 +28,13 @@ class SessionController extends AbstractController
         $sessionsFinies = $sessionRepository->findSessionsFinies();
         $currentDate = new \DateTime;
         $currentDate = $currentDate->format("Y-m-D");
+        $marqueurs = [];
+        foreach($sessions as $session)
+        {
+            if ($session->getCoordonnees()) $marqueurs[$session->getId()] = $session->getCoordonnees();
+        }
 
-
+        $marqueurs = json_encode([$marqueurs]);
         // foreach ($sessions as $session) Trying to do counting via controller  i get good arrays but i dunno how i can use it to say give index 0 to session id 1 etc.
         // {
         //     $placesRestantes = 0;
@@ -46,11 +51,10 @@ class SessionController extends AbstractController
             'sessionsAVenir' => $sessionsAVenir,
             'sessionsEnCours' => $sessionsEnCours,
             'sessionsFinies' => $sessionsFinies,
-            'currentDate' => $currentDate
+            'currentDate' => $currentDate,
+            'marqueurs' => $marqueurs,
             // 'arrayCount' => $arrayCount,
         ]);
-
-
     }
 
     #[Route('admin/session/{id}/delete', name: 'deleteSession')]
