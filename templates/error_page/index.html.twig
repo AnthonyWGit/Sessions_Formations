@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Une erreur est survenue{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Une erreur a été rencontrée</h1>
+
+    {% if code==403 %}
+        <p class="zero center">Action non autorisée</p>
+    {% elseif code==404%}
+        <p class="zero center">La page demandée n'a pas été trouvée</p>
+    {% else %}
+        <p class="zero center">Ce code erreur n'existe pas</p>
+    {% endif %}
+</div>
+{% endblock %}
