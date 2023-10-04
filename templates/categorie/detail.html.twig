@@ -2,6 +2,11 @@
 
 {% block title %}Hello CatDetail{% endblock %}
 
+{% block meta %}
+<meta name="description" content="Vue détaillée d'une catégorie">
+{% endblock %}
+
+
 {% block body %}
     <h1>Modules concernés par la catégories {{ categorie }}</h1>
         {% for module in categorie.modulesSession %}

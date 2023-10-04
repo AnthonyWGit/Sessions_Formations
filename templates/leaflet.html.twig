@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html  lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charset="UTF-8">  
+        <meta charset="UTF-8">
+        {% block meta %} 
+        <meta name="description" content="This is an example of a
+            meta description. This will often show up in search results.">
+        {% endblock %}
+
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
@@ -20,9 +25,8 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-
-
         {% endblock %}
+
 
         {% block javascripts %}
         {% endblock %}
@@ -48,10 +52,11 @@
                 {% if is_granted('IS_AUTHENTICATED') %}
                     <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
                 {% endif %}
+            </ul>                
                 <button id="toggleBtn">
                     Toggle
                 </button>
-            </ul>
+
         </nav>
     {% endif %}
 

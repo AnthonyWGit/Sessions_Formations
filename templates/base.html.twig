@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        {% block meta %} 
+        <meta name="description" content="This is an example of a
+            meta description. This will often show up in search results.">
+        {% endblock %}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charset="UTF-8">  
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -42,10 +46,13 @@
                 {% if is_granted('IS_AUTHENTICATED') %}
                     <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
                 {% endif %}
+            </ul>                
+            <div class="navButton">
                 <button id="toggleBtn">
                     Toggle
                 </button>
-            </ul>
+            </div>
+  
         </nav>
     {% endif %}
 

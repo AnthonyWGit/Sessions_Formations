@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block meta %}
+<meta name="description" content="Vue détaillée d'un stagiaire">
+{% endblock %}
+
 {% block title %}Hello StagiaireController!{% endblock %}
 
 {% block body %}
@@ -48,7 +52,7 @@
                     {% if is_granted("ROLE_ADMIN") and stagiaire not in session.stagiaires %}   
                             {% if session.placesRestantes > 0 %}
                                 <td>
-                                    <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Inscrire à la session</a>
+                                    <a href="{{ path('addStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}" class="looksLikeAButtonGreen">Inscrire à la session</a>
                                 </td>
                             {% elseif session.placesRestantes < 1 %}
                                 <td>
@@ -58,7 +62,7 @@
                         {% endif %}
                         {% if is_granted("ROLE_ADMIN") and stagiaire in session.stagiaires %}
                             <td>
-                                <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}">Désinscrire</a>
+                                <a href="{{ path('removeStagiaireToSession', { 'id': stagiaire.id,'session': session.id }) }}" class="looksLikeAButtonScarlet">Désinscrire</a>
                             </td>
                     {% endif %}
                 </tr>

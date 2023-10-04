@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block meta %}
+<meta name="description" content="Nouvelle catégorie">
+{% endblock %}
+
 {% block title %} 
     {% if not edit %} 
         Ajouter catégorie
