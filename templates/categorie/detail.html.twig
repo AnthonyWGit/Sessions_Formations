@@ -9,8 +9,16 @@
 
 {% block body %}
     <h1>Modules concernés par la catégories {{ categorie }}</h1>
+    <div class="cardBoard">
         {% for module in categorie.modulesSession %}
-            <li>{{ module.nom }}</li>
+        <div class="card">
+            <p class="zero center"><a>{{ module.nom }}</a></p>
+            {% if is_granted("ROLE_ADMIN") %}
+                <a class="looksLikeAButtonScarlet" href=" {{path('deleteModuleSession', {"id" : module.id}) }}">Supprimer</a>
+                <a class="looksLikeAButtonGreen" href=" {{path('editModuleSession', {"id" : module.id}) }}">Editer</a>
+            {% endif %}
+        </div>
         {% endfor %}
+    </div>
         <script src="{{ asset('js/toggle.js') }}"></script>    
 {% endblock %}
