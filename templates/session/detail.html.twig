@@ -10,7 +10,9 @@
 {% block body %}
 <div class="encard">
     <h1>Caractérisque de la seesion : {{ session.titre }} </h1>
-    <p><a class="looksLikeAButton" href=" {{ path("editSession", {"id" : session.id }) }}">Modifier les détails de la session</a></p>        
+    {% if is_granted("ROLE_ADMIN") %}
+        <p><a class="looksLikeAButton" href=" {{ path("editSession", {"id" : session.id }) }}">Modifier les détails de la session</a></p>        
+    {% endif %}
     <p class="zero center"><b>Nom du référant formateur</b> : {{ session.formateur.nom }} {{ session.formateur.prenom }} </p>
     <p class="zero center"><b>Contenu de la formation</b> : {{ session.formation.intitule }} </p>
     <p class="zero center"><b>Modules concernées</b> : 
@@ -51,21 +53,22 @@
             {% endfor %}
         </ul>
         </div>
-
-        <div class="colTop">
-        <p class="zero center">Ajouter un module dans la session ? </p>
-        <ul>
-            {% for module in modulesnonconcernes %}
-                <li>
-                    <form method="post" action="{{ path('addModule', {'id' : module.id , 'session' : session.id , 'moduleSession' : module.id}) }}"
-                        <label for="number{{ module.id }}">{{module}} </label>
-                        <input type="number" id="number{{ module.id }}" name="number" required>
-                        <input type="submit" value="Ajouter" class="looksLikeAButtonGreen"> 
-                    </form>
-                </li>
-            {% endfor %} 
-        </ul>
-        </div>
+        {% if is_granted("ROLE_ADMIN") %}
+            <div class="colTop">
+            <p class="zero center">Ajouter un module dans la session ? </p>
+            <ul>
+                {% for module in modulesnonconcernes %}
+                    <li>
+                        <form method="post" action="{{ path('addModule', {'id' : module.id , 'session' : session.id , 'moduleSession' : module.id}) }}"
+                            <label for="number{{ module.id }}">{{module}} </label>
+                            <input type="number" id="number{{ module.id }}" name="number" required>
+                            <input type="submit" value="Ajouter" class="looksLikeAButtonGreen"> 
+                        </form>
+                    </li>
+                {% endfor %} 
+            </ul>
+            </div>
+        {% endif %}
     </div>
 
         <p class="zero center">Voici les stagiaires qui se sont inscrits à la session</p>

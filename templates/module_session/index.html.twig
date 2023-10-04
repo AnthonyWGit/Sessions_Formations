@@ -15,13 +15,13 @@
             <a class="looksLikeAButton" href="{{ path("newModuleSession") }}">
                 Nouveau module
             </a>
+        {% endif %}
             <a class="looksLikeAButton" href="{{ path("app_programme") }}">
                 Voir les modules programmés
             </a>
             <button id="switchBtn">
                 Mode tableau
             </button>
-        {% endif %}
     </div>
     <div class="topPage">
         <input type="text" id="searchInput" data-route="{{ path("filterModuleSession") }}" placeholder="Search...">
@@ -37,9 +37,11 @@
         {% for module in modulesSession %}
                 <div class="card">
                     <p class="center zero"><b>{{ module.nom }}</b></p>
-                    <p class="center zero">{{ module.categorie }}</p>                    
-                    <p class="center zero"><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
-                    <p class="center zero"><a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Editer</a></p>
+                    <p class="center zero">{{ module.categorie }}</p>                  
+                    {% if is_granted('ROLE_ADMIN') %}  
+                        <p class="center zero"><a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></p>
+                        <p class="center zero"><a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Editer</a></p>
+                    {% endif %}
                 </div>
                 
         {% endfor %}
@@ -51,14 +53,18 @@
                 <tr>
                     <td>Nom</td>
                     <td>Categorie</td>
-                    <td colspan="2">Action</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td colspan="2">Action</td>
+                    {% endif %}
                 </tr>
         {% for module in modulesSession %}
             <tr>
                 <td>{{ module.nom }}</td>
                 <td>{{ module.categorie }}</td>
-                <td> <a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></td>
-                <td> <a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Éditer</a></td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td> <a href="{{ path('deleteModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonScarlet">Supprimer</a></td>
+                    <td> <a href="{{ path('editModuleSession', {'id' : module.id}) }}" class="looksLikeAButtonGreen">Éditer</a></td>
+                {% endif %}
             </tr>
         {% endfor %}
             </thead>
