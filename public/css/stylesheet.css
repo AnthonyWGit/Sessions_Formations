@@ -316,6 +316,11 @@ button:hover
     transition: background-color 1s;
 
 }
+.map-wrapper
+{
+    display: flex;
+    justify-content: center;
+}
 
 #map
 {
