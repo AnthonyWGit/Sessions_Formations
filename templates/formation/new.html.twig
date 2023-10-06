@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block meta %}
+<meta name="description" content="Formulaire nouvelle formation">
+{% endblock %}
+
+{% block title %} 
+    {% if not edit %} 
+        Ajouter formation
+    {% else %}
+        Editer formation
+    {% endif %} 
+{% endblock %}
+
+{% block body %}
+    {% if not edit %}
+        <h1>Ajouter une formation</h1>
+    {% else %}
+        <h1>Editer une formation</h1>
+    {% endif %}
+    <div class="formGlobal">
+        <div class="formInside">
+        {{ form_start(formNewFormation) }}
+            {{ form_row(formNewFormation.intitule) }}
+        {{ form_end(formNewFormation) }}
+        </div>
+    </div>
+    <script src="{{ asset('js/toggleForm.js') }}"></script>    
+{% endblock %}
