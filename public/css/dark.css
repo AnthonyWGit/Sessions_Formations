@@ -19,7 +19,7 @@ b.dark-mode
     color: var(--zoom-a-dark);
 }
 
-nav 
+.navbar
 {
     background-color: var(--nav-ul-dark);
 }
