@@ -14,6 +14,10 @@
         <p>L'accès à l'intranet est réservé au personnel authentifié</p>
     </div>
 
+    {% if is_granted("IS_AUTHENTICATED") %}
+        <li class="zoom"><b><a href="{{path('globalSession')}}">Accéder à l'intranet</a></b></li>
+    {% endif %}
+
     <div class="colTop">
         <button id="toggleBtn">
             Toggle
