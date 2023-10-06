@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block meta %}
+<meta name="description" content="Détail d'un formateur">
+{% endblock %}
+
+{% block title %}Hello FormateurDetail{% endblock %}
+
+{% block body %}
+<div class="encardC">
+    <h1>{{ formation.intitule }} est présente dans les sessions suivantes </h1>
+        {% for session in formation.session %}
+            <li><a class="red" href=" {{ path("detailSession" , {'id' : session.id }) }}">{{ session }}</a></li>
+        {% endfor %}
+</div>
+<script src="{{ asset('js/toggleEncardC.js') }}"></script>    
+{% endblock %}
