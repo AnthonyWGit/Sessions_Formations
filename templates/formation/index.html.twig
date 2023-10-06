@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block meta %}
+<meta name="description" content="Vue globale des formations">
+{% endblock %}
+
+{% block title %}Hello FormationController!{% endblock %}
+
+{% block body %}
+<h1>Voici la liste des sessions</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="topPage">
+                <a href=" {{ path("newFormation") }}"><div class="looksLikeAButton">Ajouter une formation</div></a>
+        </div>
+    {% endif %}
+
+<div class="cardBoard">
+    {% for formation in formations %}
+        <div class="card">
+            <div class="titreCard">
+                <p>
+                    <a href = " {{ path('detailFormation', {'id' : formation.id}) }}" ><b>{{ formation }}</b></a>                    
+                </p>
+            </div>
+            <div class="imgCard">
+                <img alt="image de profil" src=" {{asset('img/iconT.png')}}" alt="profile">
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                    <a class="looksLikeAButtonGreen" href="{{ path("editFormation" , {'id' : formation.id}) }}">Éditer</a>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                    <a class="looksLikeAButtonScarlet" href="{{ path("deleteFormation" , {'id' : formation.id}) }}">Supprimer</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <script src="{{ asset('js/toggle.js') }}"></script>    
+</div>
+
+
+{% endblock %}
