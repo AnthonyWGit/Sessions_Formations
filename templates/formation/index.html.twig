@@ -22,9 +22,6 @@
                     <a href = " {{ path('detailFormation', {'id' : formation.id}) }}" ><b>{{ formation }}</b></a>                    
                 </p>
             </div>
-            <div class="imgCard">
-                <img alt="image de profil" src=" {{asset('img/iconT.png')}}" alt="profile">
-            </div>
             {% if is_granted('ROLE_ADMIN') %}
                     <a class="looksLikeAButtonGreen" href="{{ path("editFormation" , {'id' : formation.id}) }}">Éditer</a>
             {% endif %}
