@@ -36,11 +36,6 @@
             <li class="zoom"><b><a href="{{path('globalFormateur')}}">Formateurs</a></b></li>
             <li class="zoom"><b><a href="{{path('globalFormation')}}">Formations</a></b></li>
             <li class="zoom"><b><a href="{{path('globalModuleSession')}}">Modules</a></b></li>
-            {% if not is_granted('IS_AUTHENTICATED') %}
-                <li class="zoom"><b><a href="{{path('app_login')}}">Se connecter</a></b></li>
-            {% else %}
-                <li class="zoom"><b><a href="{{path('globalSession')}}">Accéder à l'intranet</a></b></li>
-            {% endif %}
             {% if is_granted('IS_AUTHENTICATED') %}
                 <li class="zoom"><b><a href="{{path('app_logout')}}">Se déconnecter</a></b></li>
             {% endif %}
@@ -61,11 +56,12 @@
         <nav id="sidebar-menu">
             <h3>Menu</h3>
             <ul>
-                <li class="zoom"><a href="{{path('globalStagiaire')}}">Stagiaire liste</a></li>
-                <li class="zoom"><a href="{{path('globalSession')}}">Sessions liste</a></li>
-                <li class="zoom"><a href="{{path('globalCategorie')}}">Catégories liste</a></li>
-                <li class="zoom"><a href="{{path('globalFormateur')}}">Formateurs liste</a></li>
-                <li class="zoom"><a href="{{path('globalModuleSession')}}">Modules liste</a></li>
+                <li class="zoom"><a href="{{path('globalStagiaire')}}">Stagiaires</a></li>
+                <li class="zoom"><a href="{{path('globalSession')}}">Sessions</a></li>
+                <li class="zoom"><a href="{{path('globalCategorie')}}">Catégories</a></li>
+                <li class="zoom"><a href="{{path('globalFormateur')}}">Formateurs</a></li>
+                <li class="zoom"><b><a href="{{path('globalFormation')}}">Formations</a></b></li>
+                <li class="zoom"><a href="{{path('globalModuleSession')}}">Modules</a></li>
                 {% if not is_granted('IS_AUTHENTICATED') %}
                     <li class="zoom"><a href="{{path('app_login')}}">Se connecter</a></li>
                 {% endif %}
