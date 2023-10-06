@@ -23,15 +23,16 @@
                     <p>La session est fermée</p>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}" class="looksLikeAButtonScarlet">Supprimer la session</a></p>
+                    <p><a href=" {{ path("deleteSession" , {'id' : session.id}) }}" class="looksLikeAButtonScarlet">Supprimer la session</a></p>
                 {% endif %}
             </div>
         {% endfor %}
+    </div>
 
-        <div id="map" data-marqueurs="{{ marqueurs }}">
+    <div class="map-wrapper">
+        <div id="map" class="map-middle" data-marqueurs="{{ marqueurs }}">
 
         </div>
-
     </div>
         
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
