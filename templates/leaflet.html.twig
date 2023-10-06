@@ -34,29 +34,32 @@
 <body>
     {% if is_granted('IS_AUTHENTICATED') %}
     <nav class="navbar" id="navbar">
-            <ul>
-                <li class="zoom"><a href="{{path('globalStagiaire')}}">Stagiaire liste</a></li>
-                <li class="zoom"><a href="{{path('globalSession')}}">Sessions liste</a></li>
-                <li class="zoom"><a href="{{path('globalCategorie')}}">Catégories liste</a></li>
-                <li class="zoom"><a href="{{path('globalFormateur')}}">Formateurs liste</a></li>
-                <li class="zoom"><a href="{{path('globalModuleSession')}}">Modules liste</a></li>
-                {% if not is_granted('IS_AUTHENTICATED') %}
-                    <li class="zoom"><a href="{{path('app_login')}}">Se connecter</a></li>
-                {% endif %}
-                {% if is_granted('IS_AUTHENTICATED') %}
-                    <li class="zoom"><a href="{{path('app_logout')}}">Se déconnecter</a></li>
-                {% endif %}
-                {% if not is_granted('IS_AUTHENTICATED') %}
-                    <li class="zoom"><a href="{{path('app_register')}}">S'enregistrer</a></li>
-                {% endif %}
-                {% if is_granted('IS_AUTHENTICATED') %}
-                    <li class="zoom"><a href="{{path('app_profile')}}">Profil</a></li>
-                {% endif %}
-            </ul>                
-                <button id="toggleBtn">
-                    Mode
-                </button>
-        </nav>
+        <ul>
+            <li class="zoom"><b><a href="{{path('globalStagiaire')}}">Stagiaires</a></b></li>
+            <li class="zoom"><b><a href="{{path('globalSession')}}">Sessions</a></b></li>
+            <li class="zoom"><b><a href="{{path('globalCategorie')}}">Catégories</a></b></li>
+            <li class="zoom"><b><a href="{{path('globalFormateur')}}">Formateurs</a></b></li>
+            <li class="zoom"><b><a href="{{path('globalFormation')}}">Formations</a></b></li>
+            <li class="zoom"><b><a href="{{path('globalModuleSession')}}">Modules</a></b></li>
+            {% if not is_granted('IS_AUTHENTICATED') %}
+                <li class="zoom"><b><a href="{{path('app_login')}}">Se connecter</a></b></li>
+            {% else %}
+                <li class="zoom"><b><a href="{{path('globalSession')}}">Accéder à l'intranet</a></b></li>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED') %}
+                <li class="zoom"><b><a href="{{path('app_logout')}}">Se déconnecter</a></b></li>
+            {% endif %}
+            {% if not is_granted('IS_AUTHENTICATED') %}
+                <li class="zoom"><b><a href="{{path('app_register')}}">S'enregistrer</a></b></li>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED') %}
+                <li class="zoom"><b><a href="{{path('app_profile')}}">Profil</a></b></li>
+            {% endif %}
+        </ul>                
+            <button id="toggleBtn">
+                Mode
+            </button>
+    </nav>
 
         <input type="checkbox" id="hamburger-input" class="burger-shower"/>
         <label id="hamburger-menu" for="hamburger-input">
