@@ -29,9 +29,15 @@ class SessionController extends AbstractController
         $currentDate = new \DateTime;
         $currentDate = $currentDate->format("Y-m-D");
         $marqueurs = [];
-        foreach($sessions as $session)
+        foreach ($sessions as $session)
         {
-            if ($session->getCoordonnees()) $marqueurs[$session->getId()] = $session->getCoordonnees();
+            if ($session->getCoordonnees()) 
+            {
+                $marqueurs[] = [
+                    'id' => $session->getId(),
+                    'latlng' => $session->getCoordonnees()
+                ];
+            }
         }
 
         $marqueurs = json_encode([$marqueurs]);
@@ -45,6 +51,7 @@ class SessionController extends AbstractController
         //     }
         //     $arrayCount[$session->getId()] = $session->getPlaces() - $placesRestantes;
         // }
+
 
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
