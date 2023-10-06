@@ -14,8 +14,8 @@
         <div class="card">
             <a href=" {{ path( 'detailCategorie' , {'id' : categorie.id}) }}"> <b>{{categorie}}</b> </a> 
             {% if is_granted('ROLE_ADMIN') %}
-                <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Edit</a>
-                <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGrey">Delete</a>
+                <a href=" {{ path('editCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonGreen">Edit</a>
+                <a href=" {{ path('deleteCategorie', {'id' : categorie.id }) }} " class="looksLikeAButtonScarlet">Delete</a>
             {% endif %}
         </div>
     {% endfor %}
