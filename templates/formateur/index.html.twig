@@ -26,14 +26,10 @@
                 <img alt="image de profil" src=" {{asset('img/iconT.png')}}" alt="profile">
             </div>
             {% if is_granted('ROLE_ADMIN') %}
-                <div class="looksLikeAButtonGrey">
-                    <a href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Éditer</a>
-                </div>
+                    <a class="looksLikeAButtonGreen" href="{{ path("editFormateur" , {'id' : formateur.id}) }}">Éditer</a>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-                <div class="looksLikeAButtonGrey">
-                    <a href="{{ path("deleteFormateur" , {'id' : formateur.id}) }}">Supprimer</a>
-                </div>
+                    <a class="looksLikeAButtonScarlet" href="{{ path("deleteFormateur" , {'id' : formateur.id}) }}">Supprimer</a>
             {% endif %}
         </div>
     {% endfor %}
